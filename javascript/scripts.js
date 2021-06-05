@@ -28,5 +28,16 @@ var añoActual = fecha.getFullYear();
 /*                                   Salida                                   */
 /* -------------------------------------------------------------------------- */
 let edad = parseInt(añoActual - añoNacimiento);
-let salida = "Bueno " + nombre + " " + apellido + ", tienes " + edad + " años.";
-alert(salida);
+if (edad < 18) {
+    let salida = nombre + ", debes tener más de 18 años. Tú tienes sólo " + edad + " años.";
+    alert(salida);
+} else if (edad >= 18 && edad < 25) {
+    let salida = nombre + " " + apellido + ", tú tienes entre 18 y 24 años";
+    alert(salida);
+} else if (edad >= 25 && edad < 40) {
+    let salida = nombre + " " + apellido + ", tú tienes entre 25 y 39 años";
+    alert(salida);
+} else {
+    let salida = nombre + " " + apellido + ", tú tienes al menos 40 años";
+    alert(salida);
+}
