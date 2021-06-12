@@ -1,11 +1,74 @@
 /* -------------------------------------------------------------------------- */
+/*                              Define constantes                             */
+/* -------------------------------------------------------------------------- */
+// Rango de distancias
+const distanciaMinima = 10;
+const distanciaMaxima = 100;
+
+/* -------------------------------------------------------------------------- */
 /*                              Define variables                              */
 /* -------------------------------------------------------------------------- */
 let nombre = "";
 let direccionInicio = "";
-let direccioFin = "";
-let kilometros = "";
+let direccionFin = "";
+let kilometros = 0;
+let precio = 0;
 
 /* -------------------------------------------------------------------------- */
-/*                               Pregunta datos                               */
+/*                               Define funciones                             */
 /* -------------------------------------------------------------------------- */
+// Pide el nombre del usuario y repite mientras no se ingrese un texto
+function pideNombre(nombre) {
+    nombre = prompt("¿Cual es su nombre?");
+    while (nombre === "" || parseInt(nombre)) {
+        nombre = prompt("Su nombre no puede estar vacío ni ser un número - por favor repita:");
+    }
+};
+
+// Pide la dirección de inicio, repite mientras no se ingrese una
+function pideDireccionInicio(direccionInicio) {
+    direccionInicio = prompt("Indique la dirección de inicio:");
+    while (direccionInicio === "" || parseInt(direccionInicio)) {
+        direccionInicio = prompt("La dirección de inicio no puede estar vacía ni ser sólo un número - por favor repita:");
+    }
+};
+
+// Pide la dirección de término, repite mientras no se ingrese una
+function pideDireccionTermino(direccionFin) {
+    direccionFin = prompt("Indique la dirección de destino:");
+    while (direccionFin === "" || parseInt(direccionFin)) {
+        direccionFin = prompt("La dirección de destino no puede estar vacía ni ser sólo un número - por favor repita:");
+    }
+};
+
+// Ya que aún no puedo calcular la distancia, le asigno un valor aleatorio
+function defineDistancia(kilometros) {
+    kilometros = Math.random() * (distanciaMaxima - distanciaMinima) + distanciaMinima;
+    kilometros = parseFloat(kilometros.toFixed(1));
+};
+
+// Calcula un precio según el rango de kilómetros
+function calculaPrecio(kilometros) {
+        console.log(kilometros, precio);
+    if (kilometros <= 30) {
+        precio = kilometros * 2000;
+    } else if (kilometros > 30 && kilometros <= 60) {
+        precio = kilometros * 1500;
+    } else {
+        precio = kilometros * 1000;
+    }
+    console.log(kilometros, precio);
+}
+
+// Función de salida
+
+
+
+/* -------------------------------------------------------------------------- */
+/*                               Llama funciones                              */
+/* -------------------------------------------------------------------------- */
+pideNombre(nombre);
+pideDireccionInicio(direccionInicio);
+pideDireccionTermino(direccionFin);
+defineDistancia(kilometros);
+calculaPrecio(kilometros);
