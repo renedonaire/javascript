@@ -1,0 +1,56 @@
+/* -------------------------------------------------------------------------- */
+/*                          ESTILOS PARA "SERVICIOS"                          */
+/* -------------------------------------------------------------------------- */
+.section__seccionServicios {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	width: 70vw;
+	height: 64vh;
+	padding: 2rem;
+}
+
+.section__seccionServicios p {
+	font-style: italic;
+}
+
+table,
+th,
+td {
+	border: 1px solid black;
+	border-collapse: collapse;
+	padding: 0.5vw;
+}
+
+th {
+	background-color: orange;
+	font-family: "Poppins", sans-serif;
+	font-style: italic;
+	font-weight: 700;
+	font-size: 1rem;
+}
+
+td {
+	font-family: "Open Sans", sans-serif;
+	font-weight: 400;
+	font-size: 1rem;
+}
+
+.video {
+	width: 100%;
+	height: 80%;
+	object-fit: cover;
+	border: 2px solid black;
+	margin-top: 2rem;
+}
+
+.section__seccionServicios table {
+	margin-top: 1.5rem;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+
+.section__seccionServicios article {
+	width: 100%;
+}

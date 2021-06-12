@@ -1,0 +1,469 @@
+@charset "UTF-8";
+/* -------------------------------------------------------------------------- */
+/*                                    RESET                                   */
+/* -------------------------------------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+/* -------------------------------------------------------------------------- */
+/*                    ESTILOS COMUNES A TODOS LOS ARCHIVOS                    */
+/* -------------------------------------------------------------------------- */
+main {
+  /*Revisar imagen de fondo. Se puede generar como vector? */
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: 8vh 64vh;
+  gap: 0px 0px;
+  grid-template-areas: "up up up up up up up" "main main main main main main main";
+  justify-items: center;
+  background-image: url(../images/fondo.svg);
+  background-size: 100vw;
+  height: 75vh; }
+
+section {
+  grid-column: 2 / span 5;
+  justify-items: center;
+  background-color: #FFFFE5;
+  border-radius: 1rem; }
+
+section article {
+  width: 90%;
+  height: 100%;
+  padding: 2em; }
+
+footer {
+  background-color: gray;
+  text-align: center;
+  height: 15vh; }
+
+.textoCelular {
+  padding: 1rem;
+  hyphens: none; }
+
+/* ------------------------------- NAVEGACION ------------------------------- */
+.logo {
+  height: 4vh; }
+
+.nav__navegacion {
+  background-image: linear-gradient(to left, #33383b, #000000);
+  padding: 1rem; }
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  justify-content: space-evenly;
+  width: 50%; }
+
+li {
+  display: inline-block;
+  position: relative;
+  font-size: 18px; }
+  li :hover {
+    position: relative;
+    transform: scale(1.2) skewY(-3deg); }
+    li :hover a {
+      color: white;
+      font-family: "Poppins", sans-serif;
+      font-weight: 400;
+      text-decoration: none; }
+
+.nav__navegacion--activo {
+  color: #FFA500 !important; }
+
+/* ---------------------------------- TEXTO --------------------------------- */
+h1 {
+  grid-area: up;
+  align-self: center;
+  font-size: 4.5vh;
+  color: black;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  text-align: center; }
+
+h2 {
+  font-size: 1.5vw;
+  color: black;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  text-align: center; }
+
+h4 {
+  font-size: 1rem;
+  color: black;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  text-align: center; }
+
+p {
+  font-size: 1rem;
+  color: black;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  text-align: justify;
+  hyphens: auto; }
+
+/* -------------------------------------------------------------------------- */
+/*                            ESTILOS PARA "INICIO"                           */
+/* -------------------------------------------------------------------------- */
+.section__seccionInicio {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  width: 70vw;
+  margin: 0;
+  padding: 0; }
+
+/* Estilos para carousel */
+.carousel-caption h2 {
+  font-size: 3.5vh;
+  color: white;
+  text-shadow: 3px 3px 4px black; }
+
+.carousel-caption h3 {
+  font-size: 2.5vh;
+  color: white;
+  text-shadow: 3px 3px 4px black; }
+
+.carousel-caption--up {
+  position: absolute;
+  top: 5%; }
+
+.carousel-caption--down {
+  position: absolute;
+  top: 60%; }
+
+.carousel {
+  width: 100%; }
+
+.carousel-item {
+  height: 100%; }
+
+/* Truco para centrar la imagen en la vista móvil */
+.carousel-item__img {
+  max-width: none;
+  left: 60%;
+  position: relative;
+  transform: translateX(-60%);
+  -webkit-transform: translateX(-60%);
+  overflow: hidden; }
+
+/* -------------------------------------------------------------------------- */
+/*                           ESTILOS PARA "NOSOTROS"                          */
+/* -------------------------------------------------------------------------- */
+.section__seccionNosotros {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  width: 70vw;
+  height: 64vh;
+  padding: 1rem; }
+
+.imagen {
+  object-fit: cover; }
+
+.imagen:hover {
+  transform: skewY(-2deg) scale(1.1);
+  filter: grayscale(1); }
+
+.section__seccionNosotros p {
+  margin: 15% 1rem 2rem 0;
+  hyphens: none; }
+
+/* -------------------------------------------------------------------------- */
+/*                          ESTILOS PARA "SERVICIOS"                          */
+/* -------------------------------------------------------------------------- */
+.section__seccionServicios {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 70vw;
+  height: 64vh;
+  padding: 2rem; }
+
+.section__seccionServicios p {
+  font-style: italic; }
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 0.5vw; }
+
+th {
+  background-color: orange;
+  font-family: "Poppins", sans-serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1rem; }
+
+td {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 1rem; }
+
+.video {
+  width: 100%;
+  height: 80%;
+  object-fit: cover;
+  border: 2px solid black;
+  margin-top: 2rem; }
+
+.section__seccionServicios table {
+  margin-top: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem; }
+
+.section__seccionServicios article {
+  width: 100%; }
+
+/* -------------------------------------------------------------------------- */
+/*                          ESTILOS PARA "COBERTURA"                          */
+/* -------------------------------------------------------------------------- */
+.section__seccionCobertura {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  width: 70vw;
+  height: 64vh;
+  padding: 2rem; }
+
+.section__seccionCobertura p {
+  margin-bottom: 2rem; }
+
+.mapa {
+  margin-top: 1rem; }
+
+.mapa--movil {
+  margin-top: 1rem;
+  width: 100%;
+  height: 100%; }
+
+#map {
+  height: 80%;
+  width: 100%; }
+
+.texto {
+  margin: 2rem 1rem 2rem 0;
+  hyphens: none; }
+
+.seccionCobertura__row {
+  height: 100%; }
+
+/* -------------------------------------------------------------------------- */
+/*                            ESTILOS PARA "COTIZA"                           */
+/* -------------------------------------------------------------------------- */
+.section__seccionCotiza {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: auto;
+  justify-content: center;
+  width: 70vw;
+  height: 64vh;
+  padding: 2rem; }
+  .section__seccionCotiza .formulario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; }
+    .section__seccionCotiza .formulario .formulario section {
+      display: flex;
+      flex-direction: column; }
+
+.section__seccionCotiza p {
+  margin-top: 1rem; }
+
+.section__seccionCotiza--izquierdo {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  margin: 0 1rem 0 1rem; }
+
+.section__seccionCotiza--derecho {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  margin: 0 1rem 0 1rem; }
+
+.section__seccionCotiza__imagen {
+  height: 80%;
+  object-fit: cover; }
+
+textarea {
+  width: 100%; }
+
+/* -------------------------------------------------------------------------- */
+/*                            ESTILOS PARA "CONTACTO"                           */
+/* -------------------------------------------------------------------------- */
+.section__seccionContacto {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: auto;
+  justify-content: center;
+  width: 70vw;
+  height: 64vh;
+  padding: 2rem; }
+
+.section__seccionContacto p {
+  margin-top: 1rem; }
+
+.formularioContacto {
+  display: flex;
+  flex-direction: row;
+  height: 90%; }
+  .formularioContacto textarea {
+    border-color: darkgray;
+    resize: none; }
+
+.formularioContacto--celular {
+  flex-direction: column;
+  align-items: flex-start; }
+
+.formularioContacto--izquierdo {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  margin: 0 1rem 0 1rem; }
+
+.formularioContacto--derecho {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  margin: 0 1rem 0 1rem; }
+
+.section__seccionContacto__imagen {
+  width: 100%;
+  height: 80%;
+  object-fit: cover; }
+
+.boton--moviles {
+  margin: 0.5rem 0 0 0 !important; }
+
+/* -------------------------------------------------------------------------- */
+/*                             ESTILOS PARA FOOTER                            */
+/* -------------------------------------------------------------------------- */
+.footer__seccionFooter {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  margin: 0;
+  background-image: linear-gradient(to right, #33383b, #000000);
+  border-radius: 0; }
+
+/* ----------------------------- LADO IZQUIERDO ----------------------------- */
+.footer__seccionFooter--izquierdo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%; }
+
+.footer__seccionFooter--izquierdo h2 {
+  font-size: 1.7rem;
+  color: white; }
+
+/* --------------------------------- CENTRO --------------------------------- */
+.footer__seccionFooter--centro {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100%;
+  margin-right: 15vw; }
+
+.footer__seccionFooter--centro .footerInterior {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem; }
+
+.footer__seccionFooter--centro .footerInterior p,
+a {
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  text-decoration: none; }
+
+.iconoCentro {
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+  background-color: #33383b;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  color: white;
+  padding: 0.7rem;
+  margin-right: 1rem; }
+
+.footer__seccionFooter .footerInterior p {
+  font-size: 1rem;
+  color: white; }
+
+/* ------------------------------ LADO DERECHO ------------------------------ */
+.footer__seccionFooter--derecho {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100%; }
+
+.iconoDerecho {
+  width: 4rem;
+  height: 3.2rem;
+  cursor: pointer;
+  background-color: #33383b;
+  border-radius: 20%;
+  font-size: 2rem;
+  color: white;
+  padding: 10px;
+  margin-left: 2rem; }
+
+/* -------------------------------------------------------------------------- */
+/*                          ESTILOS PARA FORMULARIOS                          */
+/* -------------------------------------------------------------------------- */
+input[type="text"] {
+  color: darkgrey;
+  width: 100%;
+  padding: 6px 10px;
+  margin: 0 0 1rem 0;
+  border: 2px solid gray;
+  border-radius: 4px; }
+
+select {
+  color: darkgray;
+  width: 40%;
+  padding: 6px 10px;
+  margin: 8px 0;
+  border: 2px solid gray;
+  border-radius: 4px; }
+
+input[type="email"] {
+  color: darkgrey;
+  width: 100%;
+  padding: 6px 10px;
+  margin: 0 0 1rem 0;
+  border: 2px solid gray;
+  border-radius: 4px; }
+
+.boton {
+  width: 6rem;
+  background-color: #000000;
+  border-radius: 15px;
+  color: #FFFFE5;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 2rem 1rem 2rem 0;
+  border: none; }
+
+.boton:hover {
+  color: #000000;
+  background-color: #FFA500;
+  transform: scale(1.1); }
+
+select {
+  width: 100%;
+  margin: 0 0 1rem 0; }

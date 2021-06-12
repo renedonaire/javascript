@@ -1,0 +1,37 @@
+/* ------------------------------- NAVEGACION ------------------------------- */
+.logo {
+	height: 4vh;
+}
+
+.nav__navegacion {
+	background-image: linear-gradient(to left, $colorClaro, $colorOscuro);
+	padding: 1rem;
+}
+
+ul {
+	display: flex;
+	flex-wrap: wrap;
+	list-style-type: none;
+	justify-content: space-evenly;
+	width: 50%;
+}
+
+li {
+	display: inline-block;
+	position: relative;
+	font-size: 18px;
+	:hover {
+		position: relative;
+		transform: scale(1.2) skewY(-3deg);
+		a {
+			color: white;
+			font-family: "Poppins", sans-serif;
+			font-weight: 400;
+			text-decoration: none;
+		}
+	}
+}
+
+.nav__navegacion--activo {
+	color: $colorActivo !important;
+}

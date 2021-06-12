@@ -1,14 +1,186 @@
+<!-- ----------------------------------------------------------------------- -->
+<!--              Entrega René Donaire - idea: Transportes Juan              -->
+<!-- ----------------------------------------------------------------------- -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="./javascript/scripts.js"></script>
-</head>
-<body>
-    <h1>Algoritmo simple</h1>
-    <p>Le pide al usuario su nombre, apellido y calcula su edad.</p>
-</body>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="keywords" content="transportes, despachos, delivery, encomiendas">
+        <meta name="description" content="Servicio de transporte y despacho de paquetes pequeños y medianos. Seriedad y rapidez">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+            integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/estilos.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/dde9c62a8e.js" crossorigin="anonymous"></script>
+        <title>Transportes Juan - Inicio</title>
+    </head>
+
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!--                         ENCABEZADO Y NAVEGACION                         -->
+    <!-- ----------------------------------------------------------------------- -->
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark nav__navegacion">
+            <!-- Logo -->
+            <img class="navbar-brand logo" src="./images/logo.svg" alt="logo">
+            <!-- Icono hamburguesa -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Items del menú -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <!-- Items visibles en pantallas más grandes -->
+                    <li class="nav-item d-none d-md-block">
+                        <a class="nav-link nav__navegacion--activo" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item d-none d-md-block">
+                        <a class="nav-link" href="./pages/nosotros.html">Nosotros</a>
+                    </li>
+                    <li class="nav-item d-none d-md-block">
+                        <a class="nav-link" href="./pages/servicios.html">Servicios</a>
+                    </li>
+                    <li class="nav-item d-none d-md-block">
+                        <a class="nav-link" href="./pages/cobertura.html">Cobertura</a>
+                    </li>
+                    <li class="nav-item d-none d-md-block">
+                        <a class="nav-link" href="./pages/cotiza.html">Cotice</a>
+                    </li>
+                    <li class="nav-item d-none d-md-block">
+                        <a class="nav-link" href="./pages/contacto.html">Contacto</a>
+                    </li>
+                    <!-- Items visibles en pantallas más pequeñas -->
+                    <li class="nav-item d-md-none">
+                        <a class="nav-link nav__navegacion--activo" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item d-md-none">
+                        <a class="nav-link" href="./pages/nosotros.html">Nosotros</a>
+                    </li>
+                    <li class="nav-item d-md-none">
+                        <a class="nav-link" href="./pages/servicios.html">Servicios</a>
+                    </li>
+                    <li class="nav-item d-md-none">
+                        <a class="nav-link" href="./pages/cobertura.html">Cobertura</a>
+                    </li>
+                    <li class="nav-item d-md-none">
+                        <a class="nav-link" href="./pages/cotiza.html">Cotice</a>
+                    </li>
+                    <li class="nav-item d-md-none">
+                        <a class="nav-link" href="./pages/contacto.html">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!--                            CUERPO PRINCIPAL                             -->
+    <!-- ----------------------------------------------------------------------- -->
+    <main>
+        <h1>Transportes Juan</h1>
+        <!-- Slider, cada diapositiva incluye una llamada -->
+        <section class="container-fluid section__seccionInicio">
+            <div id="demo" class="carousel slide" data-ride="carousel">
+                <!-- Diapositivas -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <!-- Para pantallas grandes -->
+                        <img class="carousel-item__img d-none d-md-block" src="./images/furgon_slide.jpg" alt="furgón" height=100%>
+                        <div class="carousel-caption carousel-caption--down d-none d-lg-block">
+                            <h2>Cargas Grandes y Pequeñas</h2>
+                            <h3>Trasladamos todos sus envíos sin importar su tamaño</h3>
+                        </div>
+                        <!-- Para móviles -->
+                        <img class="carousel-item__img d-md-none" src="./images/furgon_slide_movil.jpg" alt="furgón" height=100%>
+                        <div class="carousel-caption carousel-caption--up d-lg-none">
+                            <h2>Cargas Grandes y Pequeñas</h2>
+                        </div>
+                    </div>
+                        <!-- Para pantallas grandes -->
+                    <div class="carousel-item">
+                        <img class="carousel-item__img d-none d-md-block" src="./images/paquetes_slide.jpg" alt="paquetes" height=100%>
+                        <div class="carousel-caption carousel-caption--up d-none d-lg-block">
+                            <h2>Todas sus entregas, sin excepción</h2>
+                            <h3>Ya sea que tenga una, diez o cien</h3>
+                        </div>
+                        <!-- Para móviles -->
+                        <img class="carousel-item__img d-md-none" src="./images/paquetes_slide_movil.jpg" alt="paquetes" height=100%>
+                        <div class="carousel-caption carousel-caption--up d-lg-none">
+                            <h2>Todas sus entregas, sin excepción</h2>
+                        </div>
+                    </div>
+                        <!-- Para pantallas grandes -->
+                    <div class="carousel-item">
+                        <img class="carousel-item__img d-none d-md-block" src="./images/chofer_slide.jpg" alt="chofer" height=100%>
+                        <div class="carousel-caption carousel-caption--down d-none d-lg-block">
+                            <h2>Tomamos todas las medidas de protección</h2>
+                            <h3>Nos cuidamos y cuidamos a nuestros clientes</h3>
+                        </div>
+                        <!-- Para móviles -->
+                        <img class="carousel-item__img d-md-none" src="./images/chofer_slide_movil.jpg" alt="chofer" height=100%>
+                        <div class="carousel-caption carousel-caption--up d-lg-none">
+                            <h2>Tomamos todas las medidas de protección</h2>
+                        </div>
+                    </div>
+                </div>
+                <!-- Controles -->
+                <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#demo" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!--                              PIE DE PAGINA                              -->
+    <!-- ----------------------------------------------------------------------- -->
+    <footer>
+        <!--¿Se puede repetir sólo una vez y llamarlo en cada documento?-->
+        <section class="row footer__seccionFooter">
+            <!--Columna izquierda-->
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                <article class="footer__seccionFooter--izquierdo">
+                    <h2>Contáctenos</h2>
+                </article>
+            </div>
+            <!--Columna central-->
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                <article class="footer__seccionFooter--centro">
+                    <div class="footerInterior">
+                        <i class="iconoCentro fa fa-mobile-alt"></i>
+                        <p>Teléfono 987 654 321</p>
+                    </div>
+                    <div class="footerInterior">
+                        <i class="iconoCentro fa fa-envelope"></i>
+                        <a href="mailto:contacto@transportesjuan.cl">contacto@transportesjuan.cl</a>
+                    </div>
+                </article>
+            </div>
+            <!--Columna derecha-->
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <article class="footer__seccionFooter--derecho">
+                    <a href="https://www.facebook.com/rene.donairebozo" target="_blank"><i class="iconoDerecho fa fa-facebook"></i></a>
+                    <a href="https://wa.me/56988107373?text='Consulta por Transportes Juan'" target="_blank"><i class="iconoDerecho fa fa-whatsapp"></i></a>
+                    <a href="https://www.youtube.com/channel/UCeFRG6700bzqYI0M_9vyelw" target="_blank"><i class="iconoDerecho fa fa-youtube"></i></a>
+                </article>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+            crossorigin="anonymous"></script>
+    </footer>
+
 </html>

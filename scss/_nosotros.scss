@@ -1,0 +1,26 @@
+/* -------------------------------------------------------------------------- */
+/*                           ESTILOS PARA "NOSOTROS"                          */
+/* -------------------------------------------------------------------------- */
+.section__seccionNosotros {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: flex-start;
+	width: 70vw;
+	height: 64vh;
+	padding: 1rem;
+}
+
+.imagen{
+	object-fit: cover;
+}
+
+.imagen:hover {
+	transform: skewY(-2deg) scale(1.1);
+	filter: grayscale(1);
+}
+
+.section__seccionNosotros p {
+	margin: 15% 1rem 2rem 0;
+	hyphens: none;
+}

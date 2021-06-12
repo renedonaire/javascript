@@ -1,0 +1,48 @@
+/* -------------------------------------------------------------------------- */
+/*                            ESTILOS PARA "COTIZA"                           */
+/* -------------------------------------------------------------------------- */
+.section__seccionCotiza {
+	display: flex;
+	flex-wrap: nowrap;
+	overflow: auto;
+	justify-content: center;
+	width: 70vw;
+	height: 64vh;
+	padding: 2rem;
+	.formulario {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		.formulario section {
+			display: flex;
+			flex-direction: column;
+		}
+	}
+}
+
+.section__seccionCotiza p {
+	margin-top: 1rem;
+}
+
+.section__seccionCotiza--izquierdo {
+	display: flex;
+	flex-direction: column;
+	width: 45%;
+	margin: 0 1rem 0 1rem;
+}
+
+.section__seccionCotiza--derecho {
+	display: flex;
+	flex-direction: column;
+	width: 45%;
+	margin: 0 1rem 0 1rem;
+}
+
+.section__seccionCotiza__imagen {
+	height: 80%;
+	object-fit: cover;
+}
+
+textarea{
+	width: 100%;
+}

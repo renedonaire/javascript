@@ -1,0 +1,54 @@
+/* -------------------------------------------------------------------------- */
+/*                          ESTILOS PARA FORMULARIOS                          */
+/* -------------------------------------------------------------------------- */
+input[type="text"] {
+	color: darkgrey;
+	width: 100%;
+	padding: 6px 10px;
+	margin: 0 0 1rem 0;
+	border: 2px solid gray;
+	border-radius: 4px;
+}
+
+select {
+	color: darkgray;
+	width: 40%;
+	padding: 6px 10px;
+	margin: 8px 0;
+	border: 2px solid gray;
+	border-radius: 4px;
+}
+
+input[type="email"] {
+	color: darkgrey;
+	width: 100%;
+	padding: 6px 10px;
+	margin: 0 0 1rem 0;
+	border: 2px solid gray;
+	border-radius: 4px;
+}
+
+.boton {
+	width: 6rem;
+	background-color: $colorOscuro;
+	border-radius: 15px;
+	color: $colorFondo;
+	padding: 10px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 1rem;
+	cursor: pointer;
+	margin: 2rem 1rem 2rem 0;
+	border: none;
+}
+
+.boton:hover {
+	color: $colorOscuro;
+	background-color: $colorActivo;
+	transform: scale(1.1);
+}
+
+select {
+	width: 100%;
+	margin: 0 0 1rem 0;
+}

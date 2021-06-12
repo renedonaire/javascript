@@ -1,0 +1,85 @@
+/* -------------------------------------------------------------------------- */
+/*                             ESTILOS PARA FOOTER                            */
+/* -------------------------------------------------------------------------- */
+.footer__seccionFooter {
+	display: flex;
+	justify-content: center;
+	width: 100vw;
+	margin: 0;
+	background-image: linear-gradient(to right, $colorClaro, $colorOscuro);
+	border-radius: 0;
+}
+
+/* ----------------------------- LADO IZQUIERDO ----------------------------- */
+.footer__seccionFooter--izquierdo {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: flex-start;
+	height: 100%;
+}
+
+.footer__seccionFooter--izquierdo h2 {
+	font-size: 1.7rem;
+	color: white;
+}
+
+/* --------------------------------- CENTRO --------------------------------- */
+.footer__seccionFooter--centro {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	height: 100%;
+	margin-right:  15vw;
+}
+
+.footer__seccionFooter--centro .footerInterior {
+	display: flex;
+	align-items: center;
+	margin-bottom: 1rem;
+}
+
+.footer__seccionFooter--centro .footerInterior p,
+a {
+	font-family: Arial, Helvetica, sans-serif;
+	color: white;
+	text-decoration: none;
+}
+
+.iconoCentro {
+	width: 3rem;
+	height: 3rem;
+	cursor: pointer;
+	background-color: $colorClaro;
+	border-radius: 50%;
+	font-size: 1.5rem;
+	color: white;
+	padding: 0.7rem;
+	margin-right: 1rem;
+}
+
+.footer__seccionFooter .footerInterior p {
+	font-size: 1rem;
+	color: white;
+}
+
+/* ------------------------------ LADO DERECHO ------------------------------ */
+.footer__seccionFooter--derecho {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	height: 100%;
+}
+
+.iconoDerecho {
+	width: 4rem;
+	height: 3.2rem;
+	cursor: pointer;
+	background-color: $colorClaro;
+	border-radius: 20%;
+	font-size: 2rem;
+	color: white;
+	padding: 10px;
+	margin-left: 2rem;
+}

@@ -1,0 +1,53 @@
+/* -------------------------------------------------------------------------- */
+/*                            ESTILOS PARA "INICIO"                           */
+/* -------------------------------------------------------------------------- */
+.section__seccionInicio {
+	display: flex;
+	flex-wrap: nowrap;
+	overflow: hidden;
+	width: 70vw;
+	margin: 0;
+	padding: 0;
+}
+
+/* Estilos para carousel */
+.carousel-caption h2 {
+	font-size: 3.5vh;
+	color: white;
+	text-shadow: 3px 3px 4px black;
+}
+
+.carousel-caption h3 {
+	font-size: 2.5vh;
+	color: white;
+	text-shadow: 3px 3px 4px black;
+}
+
+.carousel-caption--up {
+	position: absolute;
+	top: 5%;
+}
+
+.carousel-caption--down{
+	position: absolute;
+	top: 60%;
+}
+
+.carousel {
+	width: 100%;
+}
+
+.carousel-item{
+	height: 100%;
+}
+
+/* Truco para centrar la imagen en la vista móvil */
+.carousel-item__img {
+	// height: 20%;
+	max-width: none;
+	left: 60%;
+	position: relative;
+	transform: translateX(-60%);
+	-webkit-transform: translateX(-60%);
+	overflow: hidden;
+}

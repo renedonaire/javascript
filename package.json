@@ -1,0 +1,25 @@
+{
+  "name": "cuarta_entrega",
+  "version": "4.0.0",
+  "description": "Cuarta entrega curso desarrollo web",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-css": "node-sass --include-path scss scss/estilos.scss css/estilos.css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/renedonaire/desarrollo_web.git"
+  },
+  "author": "René Donaire",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/renedonaire/desarrollo_web/issues"
+  },
+  "homepage": "https://github.com/renedonaire/desarrollo_web#readme",
+  "devDependencies": {
+    "node-sass": "^5.0.0",
+    "nodemon": "^2.0.7"
+  }
+}

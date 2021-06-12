@@ -1,0 +1,39 @@
+/* -------------------------------------------------------------------------- */
+/*                          ESTILOS PARA "COBERTURA"                          */
+/* -------------------------------------------------------------------------- */
+.section__seccionCobertura {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	width: 70vw;
+	height: 64vh;
+	padding: 2rem;
+}
+
+.section__seccionCobertura p {
+	margin-bottom: 2rem;
+}
+
+.mapa {
+	margin-top: 1rem;
+}
+
+.mapa--movil {
+	margin-top: 1rem;
+	width: 100%;
+	height: 100%;
+}
+
+#map {
+	height: 80%;
+	width: 100%;
+}
+
+.texto {
+	margin: 2rem 1rem 2rem 0;
+	hyphens: none;
+}
+
+.seccionCobertura__row{
+	height: 100%;
+}
