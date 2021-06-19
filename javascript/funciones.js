@@ -9,7 +9,7 @@ function pideNombre() {
     };
 };
 
-// Pide la dirección de inicio, repite mientras no se ingrescorrectamente
+// Pide la dirección de inicio, repite mientras no se ingrese correctamente
 function pideDireccionInicio() {
     calleInicio = prompt("Dirección de inicio: Indique la calle");
     while (calleInicio === "" || parseInt(calleInicio) || !calleInicio) {
@@ -44,10 +44,11 @@ function pideDireccionTermino() {
 // Ya que aún no puedo calcular la distancia, le asigno un valor aleatorio
 function defineDistancia() {
     kilometros = Math.random() * (distanciaMaxima - distanciaMinima) + distanciaMinima;
-    kilometros = parseFloat(kilometros.toFixed(1));
+    kilometros = parseFloat(kilometros.toFixed(1));  //Kilómetros con un decimal
 };
 
 // Calcula un precio según el rango de kilómetros
+// Espero más adelante poder pedirle este dato a mapas de Google
 function calculaPrecio() {
     defineDistancia();
     if (kilometros <= 30) {
@@ -71,8 +72,15 @@ class Direccion {
 //Esta función guarda las direcciones en un array
 function guardaDirecciones(direccion) {
     this.direccion = direccion;
-    guardar = Object.values(this.direccion);
+    guardar = Object.values(this.direccion); //transforma los valores del Objeto en un Array
     direcciones.push(guardar);
+};
+
+//Esta función muestra un mapa con la ruta definida por las direcciones
+function muestraRuta(direcciones) {
+    // Toma el array de direcciones, interactúa con Google maps para obtener distancia
+    // y colocar los marcadores en la posición correspondiente.
+    // Por ahora no retorna nada
 }
 
 // Función de salida
