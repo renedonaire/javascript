@@ -8,9 +8,20 @@ const distanciaMaxima = 100;
 /* -------------------------------------------------------------------------- */
 /*                              Define variables                              */
 /* -------------------------------------------------------------------------- */
-let nombre = "";
+let nombre = ""; //nombre del usuario
 let kilometros = 0;
-let precio = 0;
+let precio = 0; //precio calculado
+
+//Variables para la dirección de origen
+let calleInicio = "";
+let numeroInicio = 0;
+let ciudadInicio = "";
+
+//Variables para la dirección de término
+let calleTermino = "";
+let numeroTermino = 0;
+let ciudadTermino = "";
+
 let direcciones = [];
 
 /* -------------------------------------------------------------------------- */
@@ -92,7 +103,7 @@ function guardaDirecciones(direccion) {
 
 // Función de salida
 function muestraResultado() {
-    alert(nombre + ", un viaje desde " + direccionInicio.calle + " hasta " + direccionTermino.calle + " son " + kilometros + " kilómetros, y te costará $" + precio);
+    alert(nombre + ", un viaje desde el " + direccionInicio.numero + " de calle " + direccionInicio.calle + " hasta el " + direccionTermino.numero + " de calle " + direccionTermino.calle + " son " + kilometros + " kilómetros, y te costará $" + precio);
 };
 
 
