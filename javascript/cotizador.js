@@ -84,8 +84,9 @@ class Direccion {
 };
 
 //Esta función guarda las direcciones en un array
-function guardaDirecciones (direccion) {
-    guardar = this.direccion;
+function guardaDirecciones(direccion) {
+    this.direccion = direccion;
+    guardar = Object.values(this.direccion) ;
     direcciones.push(guardar);
 }
 
