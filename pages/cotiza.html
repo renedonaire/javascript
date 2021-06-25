@@ -92,7 +92,7 @@
                 <form class="formulario form-horizontal" action="">
                     <section>
                         <label for="servicio">Seleccione el tipo de servicio:</label>
-                        <select name="servicio" required>
+                        <select id="servicio" name="servicio" required>
                             <option value="" disabled selected hidden>Elija clase de servicio:</option>
                             <option value="Servicio Clase 1">Servicio Clase 1</option>
                             <option value="Servicio Clase 2">Servicio Clase 2</option>
@@ -102,16 +102,16 @@
                     </section>
                     <section>
                         <label for="nombre">Su nombre:</label>
-                        <input type="text" id="nombre" name="nombre" value="Nombre">
+                        <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
                         <label for="telefono">Teléfono:</label>
-                        <input type="text" id="telefono" name="telefono" value="Telefono">
+                        <input type="text" id="telefono" name="telefono" placeholder="Telefono" required>
                         <label for="direccionInicio">Dirección de inicio:</label>
-                        <input type="text" id="direccionInicio" name="direccionInicio" value="Dirección de inicio">
+                        <input type="text" id="direccionInicio" name="direccionInicio" placeholder="Dirección de inicio" required>
                         <label for="direccionTermino">Dirección de término:</label>
-                        <input type="text" id="direccionTermino" name="direccionTermino" value="Dirección de término">
+                        <input type="text" id="direccionTermino" name="direccionTermino" placeholder="Dirección de término" required>
                     </section>
                     <section>
-                        <input type="submit" class="boton" value="Cotizar">
+                        <button class="boton" onclick="valida()">Cotizar</button>
                     </section>
                 </form>
             </article>
@@ -123,7 +123,7 @@
         <section class="section__seccionCotiza d-md-none overflow-auto">
             <form class="formulario form-group col-md-12 col-sm-12 col-xs-12" action="">
                 <section>
-                    <select name="servicio" required>
+                    <select id="servicio" name="servicio" required>
                         <option value="" disabled selected hidden>Elija la clase de servicio:</option>
                         <option value="Servicio Clase 1">Servicio Clase 1</option>
                         <option value="Servicio Clase 2">Servicio Clase 2</option>
@@ -132,13 +132,13 @@
                     <!-- Cómo coloco un selector de fechas?? -->
                 </section>
                     <section>
-                        <input type="text" id="nombre" name="nombre" value="Nombre">
-                        <input type="text" id="telefono" name="telefono" value="Telefono">
-                        <input type="text" id="direccionInicio" name="direccionInicio" value="Dirección de inicio">
-                        <input type="text" id="direccionTermino" name="direccionTermino" value="Dirección de término">
+                        <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+                        <input type="text" id="telefono" name="telefono" placeholder="Telefono" required>
+                        <input type="text" id="direccionInicio" name="direccionInicio" placeholder="Dirección de inicio" required>
+                        <input type="text" id="direccionTermino" name="direccionTermino" placeholder="Dirección de término" required>
                     </section>
                 <section>
-                    <input type="submit" class="boton" value="Cotizar">
+                    <button class="boton" onclick="valida()">Cotizar</button>
                 </section>
             </form>
         </section>
