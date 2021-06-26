@@ -91,14 +91,14 @@
             <article class="section__seccionCotiza--izquierdo col-xs-12 col-sm-12 col-md-6 col-lg-5 col-xl-5">
                 <form class="formulario form-horizontal" action="">
                     <section>
-                        <label for="servicio">Seleccione el tipo de servicio:</label>
-                        <select id="servicio" name="servicio" required>
-                            <option value="" disabled selected hidden>Elija clase de servicio:</option>
-                            <option value="Servicio Clase 1">Servicio Clase 1</option>
-                            <option value="Servicio Clase 2">Servicio Clase 2</option>
-                            <option value="Servicio Clase 3">Servicio Clase 3</option>
+                        <label for="servicio" id="labelServicio">Seleccione el tipo de servicio:</label>
+                        <select id="servicio" name="servicio" onchange="validaServicio()">
+                            <!-- disabled required hidden-->
+                            <option value="."  selected >Elija clase de servicio:</option>
+                            <option value="Mudanza">Mudanza</option>
+                            <option value="Delivery">Delivery</option>
+                            <option value="Camioneta Rampa">Camioneta Rampa</option>
                         </select>
-                        <!-- Cómo coloco un selector de fechas?? -->
                     </section>
                     <section>
                         <label for="nombre">Su nombre:</label>
@@ -111,9 +111,12 @@
                         <input type="text" id="direccionTermino" name="direccionTermino" placeholder="Dirección de término" required>
                     </section>
                     <section>
-                        <button class="boton" onclick="valida()">Cotizar</button>
+                        
                     </section>
                 </form>
+                <!-- VOLVER A COLOCAR EL BOTON DENTRO DEL FORMULARIO -->
+                <!-- CREARLO CUANDO ESTEN TODAS LAS INPUT VALIDADAS CON APPEND -->
+                <button class="boton" onclick="valida()">Cotizar</button>
             </article>
             <article class="section__seccionCotiza--derecho col-xs-12 col-sm-12 col-md-6 col-lg-5 col-xl-5">
                 <img class="section__seccionCotiza__imagen" src="../images/cotizacion.jpg" alt="equipo">
@@ -125,9 +128,9 @@
                 <section>
                     <select id="servicio" name="servicio" required>
                         <option value="" disabled selected hidden>Elija la clase de servicio:</option>
-                        <option value="Servicio Clase 1">Servicio Clase 1</option>
-                        <option value="Servicio Clase 2">Servicio Clase 2</option>
-                        <option value="Servicio Clase 3">Servicio Clase 3</option>
+                            <option value="Mudanza">Mudanza</option>
+                            <option value="Delivery">Delivery</option>
+                            <option value="Camioneta Rampa">Camioneta Rampa</option>
                     </select>
                     <!-- Cómo coloco un selector de fechas?? -->
                 </section>

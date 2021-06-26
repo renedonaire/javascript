@@ -41,14 +41,24 @@ function pideDireccionTermino() {
     };
 };
 
-// Valida los campos del formulario al hacer click en el botón
+// Valida los campos del formulario al hacer click en el botón y muestra los hints corresponientes
+function validaServicio() {
+    let servicio = document.getElementById("servicio").value;
+    if (servicio == ".") {
+        document.getElementById("labelServicio").innerHTML = "Tipo de servicio requerido";
+        document.getElementById("labelServicio").classList = "error";
+    } else {
+        document.getElementById("labelServicio").innerHTML = "";
+    };
+};
+
 function valida() {
     let nombre = document.getElementById("nombre").value;
-    let servicio = document.getElementById("servicio").value;
     let telefono = document.getElementById("telefono").value;
     let direccionInicio = document.getElementById("direccionInicio").value;
     let direccionTermino = document.getElementById("direccionTermino").value;
-    alert(nombre + servicio + telefono + direccionInicio + direccionTermino);
+
+
 };
 
 // Ya que aún no puedo calcular la distancia, le asigno un valor aleatorio

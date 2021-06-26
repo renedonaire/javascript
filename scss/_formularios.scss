@@ -4,7 +4,7 @@
 input[type="text"] {
 	color: darkgrey;
 	width: 100%;
-	padding: 6px 10px;
+	padding: 4px 6px;
 	margin: 0 0 1rem 0;
 	border: 2px solid gray;
 	border-radius: 4px;
@@ -13,7 +13,7 @@ input[type="text"] {
 select {
 	color: darkgray;
 	width: 40%;
-	padding: 6px 10px;
+	padding: 4px 6px;
 	margin: 8px 0;
 	border: 2px solid gray;
 	border-radius: 4px;
@@ -22,7 +22,7 @@ select {
 input[type="email"] {
 	color: darkgrey;
 	width: 100%;
-	padding: 6px 10px;
+	padding: 4px 6px;
 	margin: 0 0 1rem 0;
 	border: 2px solid gray;
 	border-radius: 4px;
@@ -51,4 +51,12 @@ input[type="email"] {
 select {
 	width: 100%;
 	margin: 0 0 1rem 0;
+}
+
+.error{
+	color: red;
+}
+
+label{
+	margin-bottom: 0;
 }
