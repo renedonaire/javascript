@@ -89,35 +89,32 @@
         <!-- Items visibles en pantallas más grandes, -->
         <section class="section__seccionCotiza d-none d-md-flex overflow-auto">
             <article class="section__seccionCotiza--izquierdo col-xs-12 col-sm-12 col-md-6 col-lg-5 col-xl-5">
-                <form class="formulario form-horizontal" action="">
+                <form id="formulario" class="formulario form-horizontal" action="">
                     <section>
                         <label for="servicio" id="labelServicio">Seleccione el tipo de servicio:</label>
                         <select id="servicio" name="servicio" onchange="valida()">
-                            <!-- disabled required hidden-->
-                            <option value="."  selected >Elija clase de servicio:</option>
+                            <option value="." selected>Elija clase de servicio:</option>
                             <option value="Mudanza">Mudanza</option>
                             <option value="Delivery">Delivery</option>
                             <option value="Camioneta Rampa">Camioneta Rampa</option>
                         </select>
                     </section>
                     <section>
-                        <!-- required -->
-                        <label for="nombre" id="labelNombre" >Su nombre:</label>
-                        <input type="text" id="nombre" name="nombre" placeholder="Nombre" onchange="valida()" onclick="this.select();">
+                        <label for="nombre" id="labelNombre">Su nombre:</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Nombre" onchange="valida()"
+                            onclick="this.select();">
                         <label for="telefono" id="labelTelefono">Teléfono:</label>
-                        <input type="text" id="telefono" name="telefono" placeholder="Telefono" onchange="valida()" onclick="this.select();">
+                        <input type="text" id="telefono" name="telefono" placeholder="Telefono" onchange="valida()"
+                            onclick="this.select();">
                         <label for="direccionInicio" id="labelDireccionInicio">Dirección de inicio:</label>
-                        <input type="text" id="direccionInicio" name="direccionInicio" placeholder="Dirección de inicio" onchange="valida()" onclick="this.select();">
+                        <input type="text" id="direccionInicio" name="direccionInicio" placeholder="Dirección de inicio"
+                            onchange="valida()" onclick="this.select();">
                         <label for="direccionTermino" id="labelDireccionTermino">Dirección de término:</label>
-                        <input type="text" id="direccionTermino" name="direccionTermino" placeholder="Dirección de término" onchange="valida()" onclick="this.select();">
+                        <input type="text" id="direccionTermino" name="direccionTermino"
+                            placeholder="Dirección de término" onchange="valida()" onclick="this.select();">
                     </section>
-                    <section>
-                        
-                    </section>
+                    <!--REPLICAR EN PANTALLAS MAS PEQUEÑAS-->
                 </form>
-                <!-- VOLVER A COLOCAR EL BOTON DENTRO DEL FORMULARIO -->
-                <!-- CREARLO CUANDO ESTEN TODAS LAS INPUT VALIDADAS CON APPEND -->
-                <button class="boton" onclick="valida()">Cotizar</button>
             </article>
             <article class="section__seccionCotiza--derecho col-xs-12 col-sm-12 col-md-6 col-lg-5 col-xl-5">
                 <img class="section__seccionCotiza__imagen" src="../images/cotizacion.jpg" alt="equipo">
@@ -129,18 +126,20 @@
                 <section>
                     <select id="servicio" name="servicio" required>
                         <option value="" disabled selected hidden>Elija la clase de servicio:</option>
-                            <option value="Mudanza">Mudanza</option>
-                            <option value="Delivery">Delivery</option>
-                            <option value="Camioneta Rampa">Camioneta Rampa</option>
+                        <option value="Mudanza">Mudanza</option>
+                        <option value="Delivery">Delivery</option>
+                        <option value="Camioneta Rampa">Camioneta Rampa</option>
                     </select>
                     <!-- Cómo coloco un selector de fechas?? -->
                 </section>
-                    <section>
-                        <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
-                        <input type="text" id="telefono" name="telefono" placeholder="Telefono" required>
-                        <input type="text" id="direccionInicio" name="direccionInicio" placeholder="Dirección de inicio" required>
-                        <input type="text" id="direccionTermino" name="direccionTermino" placeholder="Dirección de término" required>
-                    </section>
+                <section>
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+                    <input type="text" id="telefono" name="telefono" placeholder="Telefono" required>
+                    <input type="text" id="direccionInicio" name="direccionInicio" placeholder="Dirección de inicio"
+                        required>
+                    <input type="text" id="direccionTermino" name="direccionTermino" placeholder="Dirección de término"
+                        required>
+                </section>
                 <section>
                     <button class="boton" onclick="valida()">Cotizar</button>
                 </section>
