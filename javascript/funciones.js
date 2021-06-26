@@ -1,6 +1,20 @@
 /* -------------------------------------------------------------------------- */
 /*                               Define funciones                             */
 /* -------------------------------------------------------------------------- */
+// Función para almacenar los datos del formulario localmente
+function guardarLocal(servicio, nombre, telefono, direccionInicio, direccionTermino) {
+    this.servicio = servicio;
+    localStorage.setItem("servicio", this.servicio);
+    this.nombre = nombre;
+    localStorage.setItem("nombre", this.nombre);
+    this.telefono = telefono;
+    localStorage.setItem("telefono", this.telefono);
+    this.direccionInicio = direccionInicio;
+    localStorage.setItem("direccionInicio", this.direccionInicio);
+    this.direccionTermino = direccionTermino;
+    localStorage.setItem("direccionTermino", this.direccionTermino);
+}
+
 // Valida los campos del formulario al hacer click en el botón y muestra los hints corresponientes
 function valida() {
     // Array para validar las entradas con True o False
@@ -66,12 +80,25 @@ function valida() {
     let existeBoton = document.getElementById("botonCotizar");
     
     if (!validado.includes("false")) {
+        // Guarda los datos en el localStorage
+        guardarLocal(servicio, nombre, telefono, direccionInicio, direccionTermino);
+
         if (existeBoton == null) {
             let btn = document.createElement("button");
             btn.innerHTML = "Cotizar";
             btn.id = "botonCotizar";
+
+            // Estos atributos son necesarios para mostrar el modal
+            btn.dataset.toggle = "modal";
+            btn.dataset.target = "#myModal";
+
             document.getElementById("formulario").appendChild(btn);
             btn.className += "boton";
+
+            // Evita que la página se refresque para que el modal se visualice correctamente
+            document.getElementById("botonCotizar").addEventListener("click", function (event) {
+                event.preventDefault()
+            });
         }
     } else {
         if (validado.includes("false") && existeBoton) {
@@ -99,29 +126,6 @@ function calculaPrecio() {
         precio = kilometros * 1000;
     };
 };
-
-//Clase Direccion, construye las direcciones como objetos
-class Direccion {
-    constructor(calle, numero, ciudad) {
-        this.calle = calle;
-        this.numero = numero;
-        this.ciudad = ciudad;
-    }
-};
-
-//Esta función guarda las direcciones en un array
-function guardaDirecciones(direccion) {
-    this.direccion = direccion;
-    guardar = Object.values(this.direccion); //transforma los valores del Objeto en un Array
-    direcciones.push(guardar);
-};
-
-//Esta función muestra un mapa con la ruta definida por las direcciones
-function muestraRuta(direcciones) {
-    // Toma el array de direcciones, interactúa con Google maps para obtener distancia
-    // y colocar los marcadores en la posición correspondiente.
-    // Por ahora no retorna nada
-}
 
 // Función de salida
 function muestraResultado() {
