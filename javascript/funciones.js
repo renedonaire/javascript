@@ -63,7 +63,6 @@ function valida() {
 
     // Si en el array de control todos los valores son True, agrega el botón al DOM
     if (!validado.includes("false")) {
-        alert("Todo OK weasman");
         let btn = document.createElement("button");
         btn.innerHTML = "Cotizar";
         document.getElementById("formulario").appendChild(btn);
