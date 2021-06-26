@@ -1,64 +1,47 @@
 /* -------------------------------------------------------------------------- */
 /*                               Define funciones                             */
 /* -------------------------------------------------------------------------- */
-// Pide el nombre del usuario y repite mientras no se ingrese un texto
-function pideNombre() {
-    nombre = prompt("¿Cual es su nombre?");
-    while (nombre === "" || parseInt(nombre) || !nombre) {
-        nombre = prompt("Su nombre no puede estar vacío ni ser un número - por favor repita:");
-    };
-};
-
-// Pide la dirección de inicio, repite mientras no se ingrese correctamente
-function pideDireccionInicio() {
-    calleInicio = prompt("Dirección de inicio: Indique la calle");
-    while (calleInicio === "" || parseInt(calleInicio) || !calleInicio) {
-        calleInicio = prompt("La calle no puede estar vacía ni ser sólo un número - por favor repita:");
-    };
-    numeroInicio = prompt("Dirección de inicio: Indique el número");
-    while (numeroInicio === "" || !parseInt(numeroInicio) || !numeroInicio) {
-        numeroInicio = prompt("El número no puede estar vacío ni contener letras - por favor repita:");
-    };
-    ciudadInicio = prompt("Dirección de inicio: Indique la ciudad");
-    while (ciudadInicio === "" || parseInt(ciudadInicio) || !ciudadInicio) {
-        ciudadInicio = prompt("La ciudad no puede estar vacía ni ser sólo un número - por favor repita:");
-    };
-};
-
-// Pide la dirección de término, repite mientras no se ingrese correctamente
-function pideDireccionTermino() {
-    calleTermino = prompt("Dirección de término: Indique la calle");
-    while (calleTermino === "" || parseInt(calleTermino) || !calleTermino) {
-        calleTermino = prompt("La calle no puede estar vacía ni ser sólo un número - por favor repita:");
-    };
-    numeroTermino = prompt("Dirección de término: Indique el número");
-    while (numeroTermino === "" || !parseInt(numeroTermino) || !numeroTermino) {
-        numeroTermino = prompt("El número no puede estar vacío ni contener letras - por favor repita:");
-    };
-    ciudadTermino = prompt("Dirección de término: Indique la ciudad");
-    while (ciudadTermino === "" || parseInt(ciudadTermino) || !ciudadTermino) {
-        ciudadTermino = prompt("La ciudad no puede estar vacía ni ser sólo un número - por favor repita:");
-    };
-};
-
 // Valida los campos del formulario al hacer click en el botón y muestra los hints corresponientes
-function validaServicio() {
-    let servicio = document.getElementById("servicio").value;
+function valida() {
+        let servicio = document.getElementById("servicio").value;
     if (servicio == ".") {
         document.getElementById("labelServicio").innerHTML = "Tipo de servicio requerido";
         document.getElementById("labelServicio").classList = "error";
     } else {
         document.getElementById("labelServicio").innerHTML = "";
     };
-};
 
-function valida() {
     let nombre = document.getElementById("nombre").value;
+        if (nombre === "" || parseInt(nombre) || !nombre) {
+        document.getElementById("labelNombre").innerHTML = "Nombre requerido, sin cifras";
+        document.getElementById("labelNombre").classList = "error";
+    } else {
+        document.getElementById("labelNombre").innerHTML = "";
+    };
+
     let telefono = document.getElementById("telefono").value;
+        if (!parseInt(telefono)) {
+        document.getElementById("labelTelefono").innerHTML = "Teléfono requerido, sólo cifras";
+        document.getElementById("labelTelefono").classList = "error";
+    } else {
+        document.getElementById("labelTelefono").innerHTML = "";
+    };
+
     let direccionInicio = document.getElementById("direccionInicio").value;
+        if (direccionInicio === "" || parseInt(direccionInicio) || !direccionInicio) {
+        document.getElementById("labelDireccionInicio").innerHTML = "Se requiere dirección de inicio";
+        document.getElementById("labelDireccionInicio").classList = "error";
+    } else {
+        document.getElementById("labelDireccionInicio").innerHTML = "";
+    };
+
     let direccionTermino = document.getElementById("direccionTermino").value;
-
-
+    if (direccionTermino === "" || parseInt(direccionTermino) || !direccionTermino) {
+        document.getElementById("labelDireccionTermino").innerHTML = "Se requiere dirección de término";
+        document.getElementById("labelDireccionTermino").classList = "error";
+    } else {
+        document.getElementById("labelDireccionTermino").innerHTML = "";
+    };
 };
 
 // Ya que aún no puedo calcular la distancia, le asigno un valor aleatorio

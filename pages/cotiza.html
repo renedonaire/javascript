@@ -92,7 +92,7 @@
                 <form class="formulario form-horizontal" action="">
                     <section>
                         <label for="servicio" id="labelServicio">Seleccione el tipo de servicio:</label>
-                        <select id="servicio" name="servicio" onchange="validaServicio()">
+                        <select id="servicio" name="servicio" onchange="valida()">
                             <!-- disabled required hidden-->
                             <option value="."  selected >Elija clase de servicio:</option>
                             <option value="Mudanza">Mudanza</option>
@@ -101,14 +101,15 @@
                         </select>
                     </section>
                     <section>
-                        <label for="nombre">Su nombre:</label>
-                        <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
-                        <label for="telefono">Teléfono:</label>
-                        <input type="text" id="telefono" name="telefono" placeholder="Telefono" required>
-                        <label for="direccionInicio">Dirección de inicio:</label>
-                        <input type="text" id="direccionInicio" name="direccionInicio" placeholder="Dirección de inicio" required>
-                        <label for="direccionTermino">Dirección de término:</label>
-                        <input type="text" id="direccionTermino" name="direccionTermino" placeholder="Dirección de término" required>
+                        <!-- required -->
+                        <label for="nombre" id="labelNombre" >Su nombre:</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Nombre" onchange="valida()" onclick="this.select();">
+                        <label for="telefono" id="labelTelefono">Teléfono:</label>
+                        <input type="text" id="telefono" name="telefono" placeholder="Telefono" onchange="valida()" onclick="this.select();">
+                        <label for="direccionInicio" id="labelDireccionInicio">Dirección de inicio:</label>
+                        <input type="text" id="direccionInicio" name="direccionInicio" placeholder="Dirección de inicio" onchange="valida()" onclick="this.select();">
+                        <label for="direccionTermino" id="labelDireccionTermino">Dirección de término:</label>
+                        <input type="text" id="direccionTermino" name="direccionTermino" placeholder="Dirección de término" onchange="valida()" onclick="this.select();">
                     </section>
                     <section>
                         
