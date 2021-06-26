@@ -24,13 +24,6 @@ let direcciones = [];
 /* -------------------------------------------------------------------------- */
 /*                               Llama funciones                              */
 /* -------------------------------------------------------------------------- */
-//Pide los datos
-pideNombre();
-pideDireccionInicio();
-pideDireccionTermino();
-const direccionInicio = new Direccion(calleInicio, numeroInicio, ciudadInicio);
-const direccionTermino = new Direccion(calleTermino, numeroTermino, ciudadTermino);
-
 //Guarda direcciones en un array
 guardaDirecciones(direccionInicio);
 guardaDirecciones(direccionTermino);

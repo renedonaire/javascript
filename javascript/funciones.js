@@ -62,14 +62,22 @@ function valida() {
     };
 
     // Si en el array de control todos los valores son True, agrega el botón al DOM
+    // Primero, verifica si ya existe un botón para que no aparezcan múltiples botones al modificar un campo
+    let existeBoton = document.getElementById("botonCotizar");
+    
     if (!validado.includes("false")) {
-        let btn = document.createElement("button");
-        btn.innerHTML = "Cotizar";
-        document.getElementById("formulario").appendChild(btn);
-        btn.className += "boton";
+        if (existeBoton == null) {
+            let btn = document.createElement("button");
+            btn.innerHTML = "Cotizar";
+            btn.id = "botonCotizar";
+            document.getElementById("formulario").appendChild(btn);
+            btn.className += "boton";
+        }
     } else {
-        let form = document.getElementById("formulario");
-        form.removeChild(form.childNodes[5]);
+        if (validado.includes("false") && existeBoton) {
+            let btn = document.getElementById("botonCotizar");
+            btn.remove();
+        }
     }
 };
 
