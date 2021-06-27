@@ -6,14 +6,7 @@ const distanciaMinima = 10;
 const distanciaMaxima = 100;
 
 /* -------------------------------------------------------------------------- */
-/*                              Define variables                              */
+/*                              Define variables globales                             */
 /* -------------------------------------------------------------------------- */
-let kilometros = 0;
+let kilometros = 0; //distancia al azar -temporalmente
 let precio = 0; //precio calculado
-
-/* -------------------------------------------------------------------------- */
-/*                               Llama funciones                              */
-/* -------------------------------------------------------------------------- */
-//Ya que se validaron y capturaron los datos del formulario, calcula el precio y muestra el resultado
-calculaPrecio();
-muestraResultado();

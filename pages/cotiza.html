@@ -113,38 +113,34 @@
                         <input type="text" id="direccionTermino" name="direccionTermino"
                             placeholder="Dirección de término" onchange="valida()" onclick="this.select();">
                     </section>
-                    <!--REPLICAR EN PANTALLAS MAS PEQUEÑAS-->
                 </form>
             </article>
             <article class="section__seccionCotiza--derecho col-xs-12 col-sm-12 col-md-6 col-lg-5 col-xl-5">
                 <img class="section__seccionCotiza__imagen" src="../images/cotizacion.jpg" alt="equipo">
             </article>
         </section>
-
-<!-- ----------------------------------------------------------------------- -->
-<!--                                  MODAL                                  -->
-<!-- ----------------------------------------------------------------------- -->
-<div class="container">
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-          <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
-        </div>
-        <div class="modal-body">
-          <p>Some text in the modal.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-          </div>
-  </div>
-  </div>
-
+        
+        <!-- -------------------------------- MODAL -------------------------------- -->
+            <!-- Modal -->
+            <div class="modal fade" id="modalSalida" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Cotización</h3>
+                        </div>
+                        <div id="salidaModal" class="modal-body">
+                            <!-- Acá se insertará el texto de salida -->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="boton" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- ----------------------------------------------------------------------- -->
+            <!--          REPLICAR EL COMPORTAMIENTO EN PANTALLAS MAS PEQUEÑAS           -->
+            <!-- ----------------------------------------------------------------------- -->
         <!-- Items visibles en pantallas más pequeñas, con scroll habilitado -->
         <section class="section__seccionCotiza d-md-none overflow-auto">
             <form class="formulario form-group col-md-12 col-sm-12 col-xs-12" action="">
@@ -217,7 +213,7 @@
             integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
             crossorigin="anonymous"></script>
         <script src="../javascript/funciones.js"></script>
-        <!-- <script src="../javascript/cotizador.js"></script> -->
+        <script src="../javascript/cotizador.js"></script>
     </footer>
 
 </html>
