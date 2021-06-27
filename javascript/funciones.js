@@ -48,7 +48,6 @@ function redactaResultado() {
     // Elimina elemento si es que existe y lo reemplaza por el elemento fresco
     let existeTexto = document.getElementById("textoModal");
     if (existeTexto) {
-        alert("existe texto antiguo");
             let text = document.getElementById("textoModal");
             text.remove();
     };
