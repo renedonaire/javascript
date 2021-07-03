@@ -116,31 +116,33 @@
                 </form>
             </article>
             <article class="section__seccionCotiza--derecho col-xs-12 col-sm-12 col-md-6 col-lg-5 col-xl-5">
-                <img class="section__seccionCotiza__imagen" src="../images/cotizacion.jpg" alt="equipo">
+                <!-- <img class="section__seccionCotiza__imagen" src="../images/cotizacion.jpg" alt="equipo"> -->
+                <input id="pac-input" class="controls" type="text" placeholder="Search Box" />
+                <div id="map"></div>
             </article>
         </section>
-        
+
         <!-- -------------------------------- MODAL -------------------------------- -->
-            <!-- Modal -->
-            <div class="modal fade" id="modalSalida" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3 class="modal-title">Cotización</h3>
-                        </div>
-                        <div id="salidaModal" class="modal-body">
-                            <!-- Acá se insertará el texto de salida -->
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="boton" data-dismiss="modal">Cerrar</button>
-                        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="modalSalida" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Cotización</h3>
+                    </div>
+                    <div id="salidaModal" class="modal-body">
+                        <!-- Acá se insertará el texto de salida -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="boton" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>
-        
-            <!-- ----------------------------------------------------------------------- -->
-            <!--          REPLICAR EL COMPORTAMIENTO EN PANTALLAS MAS PEQUEÑAS           -->
-            <!-- ----------------------------------------------------------------------- -->
+        </div>
+
+        <!-- ----------------------------------------------------------------------- -->
+        <!--          REPLICAR EL COMPORTAMIENTO EN PANTALLAS MAS PEQUEÑAS           -->
+        <!-- ----------------------------------------------------------------------- -->
         <!-- Items visibles en pantallas más pequeñas, con scroll habilitado -->
         <section class="section__seccionCotiza d-md-none overflow-auto">
             <form class="formulario form-group col-md-12 col-sm-12 col-xs-12" action="">
@@ -214,6 +216,11 @@
             crossorigin="anonymous"></script>
         <script src="../javascript/funciones.js"></script>
         <script src="../javascript/cotizador.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+        <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyizHtx4Xsx2PGVx-8RXSWvECUYKrNvOw&callback=initAutocomplete&libraries=places&v=weekly"
+            async></script>
+        <script src="../javascript/mapaCotizador.js"></script>
     </footer>
 
 </html>
