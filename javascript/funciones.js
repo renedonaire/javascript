@@ -41,12 +41,19 @@ function calculaPrecio() {
 
 /* ---------------------------- Función de salida --------------------------- */
 function redactaResultado() {
-    // Carga los datos almacenados previamente en el localStorage
+    // Carga los datos almacenados en variables globales
     this.kilometros = kilometros;
     this.precio = precio;
-    this.name = localStorage.getItem("nombre");
-    this.direccionInicio = localStorage.getItem("direccionInicio");
-    this.direccionTermino = localStorage.getItem("direccionTermino");
+    // Carga los datos almacenados previamente en el localStorage
+    let userJson = localStorage.getItem("userJson");
+    let user = JSON.parse(userJson);
+    let addressJson = localStorage.getItem("addressJson");
+    let address = JSON.parse(addressJson);
+    console.log(user);
+    console.log(address);
+    this.nombre = user.nombre;
+    this.direccionInicio = address.direccionInicio;
+    this.direccionTermino = address.direccionTermino;
     // Construye texto de salida y lo agrega al modal
     let textoSalida = this.nombre + ", un viaje desde " + this.direccionInicio + " hasta " + this.direccionTermino + " son " + this.kilometros + " kilómetros, y te costará $" + this.precio;
     // Elimina elemento si es que existe y lo reemplaza por el elemento fresco
