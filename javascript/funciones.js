@@ -10,14 +10,12 @@ function guardarLocal(servicio, nombre, telefono, direccionInicio, direccionTerm
     let user = { nombre: this.nombre, servicio: this.servicio, telefono: this.telefono };
     let userJson = JSON.stringify(user);
     localStorage.setItem("userJson", userJson);
-    console.log(userJson);
     
     this.direccionInicio = direccionInicio;
     this.direccionTermino = direccionTermino;
     let address = { direccionInicio: this.direccionInicio, direccionTermino: this.direccionTermino };
     let addressJson = JSON.stringify(address);
     localStorage.setItem("addressJson", addressJson);
-    console.log(addressJson);
 };
 
 /* ------------------- Asigna valor aleatorio a Distancia ------------------- */
@@ -49,8 +47,6 @@ function redactaResultado() {
     let user = JSON.parse(userJson);
     let addressJson = localStorage.getItem("addressJson");
     let address = JSON.parse(addressJson);
-    console.log(user);
-    console.log(address);
     this.nombre = user.nombre;
     this.direccionInicio = address.direccionInicio;
     this.direccionTermino = address.direccionTermino;
