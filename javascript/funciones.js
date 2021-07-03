@@ -2,18 +2,22 @@
 /*                               Define funciones                             */
 /* -------------------------------------------------------------------------- */
 /* ------- Función para almacenar los datos del formulario localmente ------- */
-// Ver cómo se puede simplificar, al parecer se repite la lógica
+// Guarda en formato JSON, uno para las direcciones y otro para los datos del cliente
 function guardarLocal(servicio, nombre, telefono, direccionInicio, direccionTermino) {
     this.servicio = servicio;
-    localStorage.setItem("servicio", this.servicio);
     this.nombre = nombre;
-    localStorage.setItem("nombre", this.nombre);
     this.telefono = telefono;
-    localStorage.setItem("telefono", this.telefono);
+    let user = { nombre: this.nombre, servicio: this.servicio, telefono: this.telefono };
+    let userJson = JSON.stringify(user);
+    localStorage.setItem("userJson", userJson);
+    console.log(userJson);
+    
     this.direccionInicio = direccionInicio;
-    localStorage.setItem("direccionInicio", this.direccionInicio);
     this.direccionTermino = direccionTermino;
-    localStorage.setItem("direccionTermino", this.direccionTermino);
+    let address = { direccionInicio: this.direccionInicio, direccionTermino: this.direccionTermino };
+    let addressJson = JSON.stringify(address);
+    localStorage.setItem("addressJson", addressJson);
+    console.log(addressJson);
 };
 
 /* ------------------- Asigna valor aleatorio a Distancia ------------------- */
