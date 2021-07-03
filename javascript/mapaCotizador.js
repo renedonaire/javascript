@@ -1,68 +1,75 @@
-// This example adds a search box to a map, using the Google Place Autocomplete
-// feature. People can enter geographical searches. The search box will return a
-// pick list containing a mix of places and predicted search terms.
-// This example requires the Places library. Include the libraries=places
-// parameter when you first load the API. For example:
-// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-function initAutocomplete() {
+function initMap() {
 	const map = new google.maps.Map(document.getElementById("map"), {
-		center: { lat: -33.8688, lng: 151.2195 },
-		zoom: 13,
-		mapTypeId: "roadmap",
+		mapTypeControl: false,
+		center: { lat: -33.4852941, lng: -70.6720072 },
+		zoom: 14,
 	});
-	// Create the search box and link it to the UI element.
-	const input = document.getElementById("pac-input");
-	const searchBox = new google.maps.places.SearchBox(input);
-	map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-	// Bias the SearchBox results towards current map's viewport.
-	map.addListener("bounds_changed", () => {
-		searchBox.setBounds(map.getBounds());
-	});
-	let markers = [];
-	// Listen for the event fired when the user selects a prediction and retrieve
-	// more details for that place.
-	searchBox.addListener("places_changed", () => {
-		const places = searchBox.getPlaces();
+	new AutocompleteDirectionsHandler(map);
+}
 
-		if (places.length == 0) {
-			return;
-		}
-		// Clear out the old markers.
-		markers.forEach((marker) => {
-			marker.setMap(null);
-		});
-		markers = [];
-		// For each place, get the icon, name and location.
-		const bounds = new google.maps.LatLngBounds();
-		places.forEach((place) => {
-			if (!place.geometry || !place.geometry.location) {
-				console.log("Returned place contains no geometry");
+class AutocompleteDirectionsHandler {
+	map;
+	originPlaceId;
+	destinationPlaceId;
+	travelMode;
+	directionsService;
+	directionsRenderer;
+	constructor(map) {
+		this.map = map;
+		this.originPlaceId = "";
+		this.destinationPlaceId = "";
+		this.travelMode = google.maps.TravelMode.DRIVING;
+		this.directionsService = new google.maps.DirectionsService();
+		this.directionsRenderer = new google.maps.DirectionsRenderer();
+		this.directionsRenderer.setMap(map);
+		const originInput = document.getElementById("direccionInicio");
+		const destinationInput = document.getElementById("direccionTermino");
+		const originAutocomplete = new google.maps.places.Autocomplete(originInput);
+		originAutocomplete.setFields(["place_id"]);
+		const destinationAutocomplete = new google.maps.places.Autocomplete(
+			destinationInput
+		);
+		destinationAutocomplete.setFields(["place_id"]);
+		this.setupPlaceChangedListener(originAutocomplete, "ORIG");
+		this.setupPlaceChangedListener(destinationAutocomplete, "DEST");
+	}
+
+	setupPlaceChangedListener(autocomplete, mode) {
+		autocomplete.bindTo("bounds", this.map);
+		autocomplete.addListener("place_changed", () => {
+			const place = autocomplete.getPlace();
+
+			if (!place.place_id) {
+				window.alert("Please select an option from the dropdown list.");
 				return;
 			}
-			const icon = {
-				url: place.icon,
-				size: new google.maps.Size(71, 71),
-				origin: new google.maps.Point(0, 0),
-				anchor: new google.maps.Point(17, 34),
-				scaledSize: new google.maps.Size(25, 25),
-			};
-			// Create a marker for each place.
-			markers.push(
-				new google.maps.Marker({
-					map,
-					icon,
-					title: place.name,
-					position: place.geometry.location,
-				})
-			);
 
-			if (place.geometry.viewport) {
-				// Only geocodes have viewport.
-				bounds.union(place.geometry.viewport);
+			if (mode === "ORIG") {
+				this.originPlaceId = place.place_id;
 			} else {
-				bounds.extend(place.geometry.location);
+				this.destinationPlaceId = place.place_id;
 			}
+			this.route();
 		});
-		map.fitBounds(bounds);
-	});
+	}
+	route() {
+		if (!this.originPlaceId || !this.destinationPlaceId) {
+			return;
+		}
+		const me = this;
+		this.directionsService.route(
+			{
+				origin: { placeId: this.originPlaceId },
+				destination: { placeId: this.destinationPlaceId },
+				travelMode: this.travelMode,
+			},
+			(response, status) => {
+				if (status === "OK") {
+					me.directionsRenderer.setDirections(response);
+				} else {
+					window.alert("Directions request failed due to " + status);
+				}
+			}
+		);
+	}
 }

@@ -48,10 +48,11 @@ function redactaResultado() {
     let addressJson = localStorage.getItem("addressJson");
     let address = JSON.parse(addressJson);
     this.nombre = user.nombre;
+    this.servicio = user.servicio;
     this.direccionInicio = address.direccionInicio;
     this.direccionTermino = address.direccionTermino;
     // Construye texto de salida y lo agrega al modal
-    let textoSalida = this.nombre + ", un viaje desde " + this.direccionInicio + " hasta " + this.direccionTermino + " son " + this.kilometros + " kilómetros, y te costará $" + this.precio;
+    let textoSalida = this.nombre + ", un viaje de " + this.servicio + " desde " + this.direccionInicio + " hasta " + this.direccionTermino + " son " + this.kilometros + " kilómetros, y te costará $" + this.precio;
     // Elimina elemento si es que existe y lo reemplaza por el elemento fresco
     let existeTexto = document.getElementById("textoModal");
     if (existeTexto) {
