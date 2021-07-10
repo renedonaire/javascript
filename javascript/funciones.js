@@ -10,7 +10,7 @@ function guardarLocal(servicio, nombre, telefono, direccionInicio, direccionTerm
     let user = { nombre: this.nombre, servicio: this.servicio, telefono: this.telefono };
     let userJson = JSON.stringify(user);
     localStorage.setItem("userJson", userJson);
-    
+
     this.direccionInicio = direccionInicio;
     this.direccionTermino = direccionTermino;
     let address = { direccionInicio: this.direccionInicio, direccionTermino: this.direccionTermino };
@@ -51,18 +51,14 @@ function redactaResultado() {
     this.servicio = user.servicio;
     this.direccionInicio = address.direccionInicio;
     this.direccionTermino = address.direccionTermino;
-    // Construye texto de salida y lo agrega al modal
+    // Construye texto de salida
     let textoSalida = this.nombre + ", un viaje de " + this.servicio + " desde " + this.direccionInicio + " hasta " + this.direccionTermino + " son " + this.kilometros + " kilómetros, y te costará $" + this.precio;
-    // Elimina elemento si es que existe y lo reemplaza por el elemento fresco
-    let existeTexto = document.getElementById("textoModal");
-    if (existeTexto) {
-            let text = document.getElementById("textoModal");
-            text.remove();
-    };
-    let text = document.createElement("p");
-    text.innerHTML = textoSalida;
-    text.id = "textoModal";
-    document.getElementById("salidaModal").appendChild(text);
+    // Refresca texto del modal
+    $("#salidaModal").empty();
+    // Agrega texto de salida al modal
+    $("#salidaModal").append(function () {
+        return textoSalida;
+    });
 };
 
 /* -------------------- Valida los campos del formulario -------------------- */
