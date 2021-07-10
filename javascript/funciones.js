@@ -124,23 +124,18 @@ function valida() {
         // Guarda los datos en el localStorage
         guardarLocal(servicio, nombre, telefono, direccionInicio, direccionTermino);
         if (existeBoton == null) {
-            let btn = document.createElement("button");
-            btn.innerHTML = "Cotizar";
-            btn.id = "botonCotizar";
-            // Estos atributos son necesarios para mostrar el modal
-            btn.dataset.toggle = "modal";
-            btn.dataset.target = "#modalSalida";
-            document.getElementById("formulario").appendChild(btn);
-            btn.className += "boton";
+            let btn = "<button class='boton' id='botonCotizar' data-toggle='modal' data-target ='#modalSalida' >Cotizar</button>"
+            $("#formulario").append(function () {
+                return btn;
+            });
             // Evita que la página se refresque para que el modal se visualice correctamente
-            document.getElementById("botonCotizar").addEventListener("click", function (event) {
-                event.preventDefault()
+            $("#botonCotizar").click(function (e) {
+                e.preventDefault();
             });
         }
     } else {
         if (validado.includes("false") && existeBoton) {
-            let btn = document.getElementById("botonCotizar");
-            btn.remove();
+            $("#botonCotizar").remove();
         }
     }
     // Modifica texto del modal de salida
