@@ -68,58 +68,58 @@ function valida() {
     // Array para validar las entradas con True o False
     let validado = [];
     // Valida que el tipo de servicio no esté vacío
-    let servicio = document.getElementById("servicio").value;
+    let servicio = $("#servicio").val();
     if (servicio == ".") {
-        document.getElementById("labelServicio").innerHTML = "Tipo de servicio requerido";
-        document.getElementById("labelServicio").classList = "error";
+        $("#labelServicio").html("Tipo de servicio requerido");
+        $("#labelServicio").addClass("error");
         validado.push("false");
     } else {
-        document.getElementById("labelServicio").innerHTML = "";
+        $("#labelServicio").html("");
         validado.push("true");
     };
     // Valida que el nombre no esté vacío o sean sólo números
-    let nombre = document.getElementById("nombre").value;
+    let nombre = $("#nombre").val();
     if (nombre === "" || parseInt(nombre) || !nombre) {
-        document.getElementById("labelNombre").innerHTML = "Nombre requerido, sin cifras";
-        document.getElementById("labelNombre").classList = "error";
+        $("#labelNombre").html("Nombre requerido, sin cifras");
+        $("#labelNombre").addClass("error");
         validado.push("false");
     } else {
-        document.getElementById("labelNombre").innerHTML = "";
+        $("#labelNombre").html("");
         validado.push("true");
     };
     // Valida que el teléfono contenga sólo números
-    let telefono = document.getElementById("telefono").value;
+    let telefono = $("#telefono").val();
     if (!parseInt(telefono)) {
-        document.getElementById("labelTelefono").innerHTML = "Teléfono requerido, sólo cifras";
-        document.getElementById("labelTelefono").classList = "error";
+        $("#labelTelefono").html("Teléfono requerido, sólo cifras");
+        $("#labelTelefono").addClass("error");
         validado.push("false");
     } else {
-        document.getElementById("labelTelefono").innerHTML = "";
+        $("#labelTelefono").html("");
         validado.push("true");
     };
     // Valida que haya una dirección de inicio
-    let direccionInicio = document.getElementById("direccionInicio").value;
+    let direccionInicio = $("#direccionInicio").val();
     if (direccionInicio === "" || parseInt(direccionInicio) || !direccionInicio) {
-        document.getElementById("labelDireccionInicio").innerHTML = "Se requiere dirección de inicio";
-        document.getElementById("labelDireccionInicio").classList = "error";
+        $("#labelDireccionInicio").html("Se requiere dirección de inicio");
+        $("#labelDireccionInicio").addClass("error");
         validado.push("false");
     } else {
-        document.getElementById("labelDireccionInicio").innerHTML = "";
+        $("#labelDireccionInicio").html("");
         validado.push("true");
     };
     // Valida que exista una dirección de destino
-    let direccionTermino = document.getElementById("direccionTermino").value;
+    let direccionTermino = $("#direccionTermino").val();
     if (direccionTermino === "" || parseInt(direccionTermino) || !direccionTermino) {
-        document.getElementById("labelDireccionTermino").innerHTML = "Se requiere dirección de término";
-        document.getElementById("labelDireccionTermino").classList = "error";
+        $("#labelDireccionTermino").html("Se requiere dirección de término");
+        $("#labelDireccionTermino").addClass("error");
         validado.push("false");
     } else {
-        document.getElementById("labelDireccionTermino").innerHTML = "";
+        $("#labelDireccionTermino").html("");
         validado.push("true");
     };
     // Si en el array de control todos los valores son True, agrega el botón al DOM
     // Primero, verifica si ya existe un botón para que no aparezcan múltiples botones al modificar un campo
-    let existeBoton = document.getElementById("botonCotizar");
+    let existeBoton = $("#botonCotizar").html();
     if (!validado.includes("false")) {
         // Guarda los datos en el localStorage
         guardarLocal(servicio, nombre, telefono, direccionInicio, direccionTermino);
