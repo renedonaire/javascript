@@ -61,10 +61,24 @@ function redactaResultado() {
     });
 };
 
+/* ------------ Trae datos de un ejecutivo ficticio mediante AJAX ----------- */
+function buscaEjecutivo() {
+    $.ajax({
+        url: 'https://randomuser.me/api/?results=1&inc=name,email,cell&noinfo',
+        dataType: 'json',
+        success: function (data) {
+            console.log(data.results[0].cell);
+        }
+    });
+}
+
+
 /* -------------------- Valida los campos del formulario -------------------- */
 // Al hacer click en el botón y muestra los hints corresponientes
 // Ver cómo se puede simplificar, al parecer se repite la lógica
 function valida() {
+    //Trae datos de ejecutivo ficticio
+    buscaEjecutivo();
     // Array para validar las entradas con True o False
     let validado = [];
     // Valida que el tipo de servicio no esté vacío
