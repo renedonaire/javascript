@@ -64,10 +64,18 @@ function redactaResultado() {
 /* ------------ Trae datos de un ejecutivo ficticio mediante AJAX ----------- */
 function buscaEjecutivo() {
     $.ajax({
-        url: 'https://randomuser.me/api/?results=1&inc=name,email,cell&noinfo',
+        url: 'https://randomuser.me/api/?results=1&inc=name,email,cell,picture&noinfo',
         dataType: 'json',
         success: function (data) {
-            console.log(data.results[0].cell);
+            // Asigna variables
+            let nombreEjecutivo = data.results[0].name.first + " " + data.results[0].name.last;
+            let celularEjecutivo = data.results[0].cell;
+            let emailEjecutivo = data.results[0].email;
+            let fotoEjecutivo = data.results[0].picture.large;
+            // Construye respuesta desde el array que entrega la API
+            let agregar = "<img src='" + fotoEjecutivo + "' alt=''><p>Tu Ejecutivo asignado es: " + nombreEjecutivo + "</p><p>Llámalo al " + celularEjecutivo + "</p><p>O escríbele a " + emailEjecutivo + "</p>"
+            // Inserta el html con los nuevos datos en el modal
+            $("#ejecutivo").html(agregar);
         }
     });
 }
