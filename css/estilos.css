@@ -459,6 +459,18 @@ input[type="email"] {
   margin: 2rem 1rem 2rem 0;
   border: none; }
 
+.boton--desactivado {
+  width: 6rem;
+  background-color: lightgray;
+  border-radius: 15px;
+  color: #FFFFE5;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1rem;
+  margin: 2rem 1rem 2rem 0;
+  border: none; }
+
 .boton:hover {
   color: #000000;
   background-color: #FFA500;

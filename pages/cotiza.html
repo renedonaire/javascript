@@ -124,11 +124,9 @@
                         <input type="text" id="telefono" name="telefono"
                             placeholder="Telefono" onchange="valida()"
                             onclick="this.select();">
-                        <label for="direccionInicio" id="labelDireccionInicio">Dirección
-                            de inicio:</label>
+                        <label for="direccionInicio" id="labelDireccionInicio">Dirección de inicio:</label>
                         <input type="text" id="direccionInicio"
-                            name="direccionInicio" placeholder="Dirección de
-                            inicio"
+                            name="direccionInicio" placeholder="Dirección de inicio"
                             onchange="valida()" onclick="this.select();">
                         <label for="direccionTermino"
                             id="labelDireccionTermino">Dirección de término:</label>
@@ -137,6 +135,9 @@
                             placeholder="Dirección de término"
                             onchange="valida()" onclick="this.select();">
                     </section>
+                    <div id="finFormulario">
+                        <button class='boton--desactivado'  disabled id='botonCotizar'>Cotizar</button>
+                    </div>
                 </form>
             </article>
             <article class="section__seccionCotiza--derecho col-xs-12 col-sm-12

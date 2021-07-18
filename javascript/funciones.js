@@ -139,25 +139,24 @@ function valida() {
         $("#labelDireccionTermino").html("");
         validado.push("true");
     };
-    // Si en el array de control todos los valores son True, agrega el botón al DOM
-    // Primero, verifica si ya existe un botón para que no aparezcan múltiples botones al modificar un campo
-    let existeBoton = $("#botonCotizar").html();
+    // Si en el array de control todos los valores son True, cambia la clase del botón a activo y habilita acciones
     if (!validado.includes("false")) {
         // Guarda los datos en el localStorage
         guardarLocal(servicio, nombre, telefono, direccionInicio, direccionTermino);
-        if (existeBoton == null) {
-            let btn = "<button class='boton' id='botonCotizar' data-toggle='modal' data-target ='#modalSalida' >Cotizar</button>"
-            $("#formulario").append(function () {
-                return btn;
-            });
+        let btn = "<button class='boton' id='botonCotizar' data-toggle='modal' data-target ='#modalSalida' >Cotizar</button>"
+        $("#finFormulario").html(btn);
+        // Evita que la página se refresque para que el modal se visualice correctamente
+        $("#botonCotizar").click(function (e) {
+            e.preventDefault();
+        });
+    } else {
+        if (validado.includes("false")) {
+            let btn = "<button class='boton--desactivado'  disabled id='botonCotizar'>Cotizar</button>";
+            $("#finFormulario").html(btn);
             // Evita que la página se refresque para que el modal se visualice correctamente
             $("#botonCotizar").click(function (e) {
                 e.preventDefault();
             });
-        }
-    } else {
-        if (validado.includes("false") && existeBoton) {
-            $("#botonCotizar").remove();
         }
     }
     // Modifica texto del modal de salida
