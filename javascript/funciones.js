@@ -78,11 +78,33 @@ function buscaEjecutivo() {
             $("#ejecutivo").html(agregar);
         }
     });
-}
+};
+
+/* ------------------- Esta función envía datos a una API ------------------- */
+// usando fetch. En este caso es una API de prueba
+// pero podría usarse para guardar los datos de clientes en una base de datos
+function enviarDatosAPI(servicio, nombre, telefono, direccionInicio, direccionTermino) {
+    fetch('https://jsonplaceholder.typicode.com/posts', {
+        method: 'POST',
+        body: JSON.stringify({
+            nombre: this.nombre,
+            teléfono: this.telefono,
+            servicio: this.servicio,
+            direccionInicio: this.direccionInicio,
+            direccionTermino: this.direccionTermino,
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    })
+        // Recibe respuesta y la muestra por consola
+        .then((response) => response.json())
+        .then((json) => console.log(json));
+};
 
 
 /* -------------------- Valida los campos del formulario -------------------- */
-// Al hacer click en el botón y muestra los hints corresponientes
+// Al hacer click en el botón y muestra los hints correspondientes
 // Ver cómo se puede simplificar, al parecer se repite la lógica
 function valida() {
     //Trae datos de ejecutivo ficticio
@@ -143,6 +165,9 @@ function valida() {
     if (!validado.includes("false")) {
         // Guarda los datos en el localStorage
         guardarLocal(servicio, nombre, telefono, direccionInicio, direccionTermino);
+        // Envía los datos a una API externa - ver función
+        enviarDatosAPI(servicio, nombre, telefono, direccionInicio, direccionTermino);
+        // Cambia el botón por uno activo
         let btn = "<button class='boton' id='botonCotizar' data-toggle='modal' data-target ='#modalSalida' >Cotizar</button>"
         $("#finFormulario").html(btn);
         // Evita que la página se refresque para que el modal se visualice correctamente
@@ -151,6 +176,7 @@ function valida() {
         });
     } else {
         if (validado.includes("false")) {
+            // Cambia el botón por uno desactivado
             let btn = "<button class='boton--desactivado'  disabled id='botonCotizar'>Cotizar</button>";
             $("#finFormulario").html(btn);
             // Evita que la página se refresque para que el modal se visualice correctamente
