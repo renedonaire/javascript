@@ -22,10 +22,31 @@ function guardarLocal(servicio, nombre, telefono, direccionInicio, direccionTerm
 function defineDistancia() {
     kilometros = Math.random() * (distanciaMaxima - distanciaMinima) + distanciaMinima;
     kilometros = parseFloat(kilometros.toFixed(1));  //Kilómetros con un decimal
+
+	const service = new google.maps.DistanceMatrixService(); // instantiate Distance Matrix service
+	let inicio = document.getElementById("direccionInicio").value;
+	let termino = document.getElementById("direccionTermino").value;
+	const matrixOptions = {
+		origins: [inicio], 
+		destinations: [termino], 
+		travelMode: 'DRIVING',
+		unitSystem: google.maps.UnitSystem.METRIC
+	};
+	// Call Distance Matrix service
+	service.getDistanceMatrix(matrixOptions, callback);
+
+	// Callback function used to process Distance Matrix response
+	function callback(response, status) {
+		if (status !== "OK") {
+			alert("Error with distance matrix");
+			return;
+		}
+		console.log(response);
+	}
+
 };
 
 /* ------------- Calcula un precio según el rango de kilómetros ------------- */
-// Espero más adelante poder pedirle este dato a mapas de Google
 function calculaPrecio() {
     defineDistancia();
     if (kilometros <= 30) {

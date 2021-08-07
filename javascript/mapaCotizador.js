@@ -5,6 +5,29 @@ function initMap() {
 		zoom: 14,
 	});
 	new AutocompleteDirectionsHandler(map);
+
+	// const service = new google.maps.DistanceMatrixService(); // instantiate Distance Matrix service
+	// let inicio = document.getElementById("direccionInicio").value;
+	// let termino = document.getElementById("direccionTermino").value;
+	// const matrixOptions = {
+	// 	origins: [inicio], 
+	// 	destinations: [termino], 
+	// 	travelMode: 'DRIVING',
+	// 	unitSystem: google.maps.UnitSystem.METRIC
+	// };
+	// // Call Distance Matrix service
+	// service.getDistanceMatrix(matrixOptions, callback);
+
+	// // Callback function used to process Distance Matrix response
+	// function callback(response, status) {
+	// 	if (status !== "OK") {
+	// 		alert("Error with distance matrix");
+	// 		return;
+	// 	}
+	// 	console.log(response);
+	// }
+
+
 }
 
 class AutocompleteDirectionsHandler {
