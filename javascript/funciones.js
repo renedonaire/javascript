@@ -20,60 +20,6 @@ function guardarLocal(servicio, nombre, telefono, direccionInicialMap, direccion
 };
 
 
-/* ------------------- Calcula Distancia usando Google ------------------- */
-function validaDirecciones() {
-    const service = new google.maps.DistanceMatrixService();
-    let inicio = document.getElementById("direccionInicio").value;
-    let termino = document.getElementById("direccionTermino").value;
-    const matrixOptions = {
-        origins: [inicio],
-        destinations: [termino],
-        travelMode: 'DRIVING',
-        unitSystem: google.maps.UnitSystem.METRIC
-    };
-    // Llama el servicio  Distance Matrix
-    service.getDistanceMatrix(matrixOptions, callback);
-    // Función callback usada para procesar la respuesta de Distance Matrix
-    function callback(response, status) {
-        if (status !== "OK") {
-            alert("Error - no se puede obtener la distancia");
-            return;
-        }
-        console.log("Respuesta API Distance: ");
-        console.log(response);
-        //Asigna valor a direccion de inicio
-        if (response.originAddresses[0] === "") {
-            $("#labelDireccionInicio").html("Se requiere dirección de inicio válida");
-            $("#labelDireccionInicio").addClass("error");
-            validado.push("false");
-        } else {
-            direccionInicialMap = response.originAddresses[0];
-            $("#direccionInicio").value = direccionInicialMap;
-            $("#labelDireccionInicio").html("");
-            validado.push("true");
-        };
-        //Asigna valor a direccion de termino
-        if (response.destinationAddresses[0] === "") {
-            $("#labelDireccionTermino").html("Se requiere dirección de término válida");
-            $("#labelDireccionTermino").addClass("error");
-            validado.push("false");
-        } else {
-            direccionFinalMap = response.destinationAddresses[0];
-            $("#labelDireccionTermino").html("");
-            validado.push("true");
-        };
-        //Asigna valor a kilometros
-        if (response.rows[0].elements[0].status === "NOT_FOUND") {
-            kilometros = 0;
-        } else {
-            kilometros = response.rows[0].elements[0].distance.value / 1000;
-            kilometros = parseFloat(kilometros.toFixed(1));  //Kilómetros con un decimal
-            calculaPrecio(kilometros);
-        };
-    };
-};
-
-
 /* ------------- Calcula un precio según el rango de kilómetros ------------- */
 function calculaPrecio(kilometros) {
     if (kilometros <= 30) {
@@ -162,51 +108,141 @@ function refrescarFormulario() {
 }
 
 
-/* -------------------- Valida los campos del formulario -------------------- */
-// Al hacer click en el botón y muestra los hints correspondientes
-// Ver cómo se puede simplificar, al parecer se repite la lógica
-function valida() {
+/* -------------------------------------------------------------------------- */
+/*                      FUNCIONES DE VALIDACION DE CAMPOS                     */
+/* -------------------------------------------------------------------------- */
+
+/* ------------------------ Resetea array de control ------------------------ */
+function resetValidado() {
     validado = [];
-    //Llama función para obtener distancia
-    validaDirecciones();
-    //Trae datos de ejecutivo ficticio
-    buscaEjecutivo();
-    // Valida que el tipo de servicio no esté vacío
+    proof = false;
+    console.log("RESET VALIDADO -> Validado: "+validado + " // proof: " + proof);
+}
+
+/* -------------- Valida que el tipo de servicio no esté vacío -------------- */
+function validaServicio() {
     let servicio = $("#servicio").val();
     if (servicio == ".") {
         $("#labelServicio").html("Tipo de servicio requerido");
         $("#labelServicio").addClass("error");
-        validado.push("false");
+        validado.push("mal");
     } else {
         $("#labelServicio").html("");
-        validado.push("true");
+        validado.push("bien");
     };
-    // Valida que el nombre no esté vacío o sean sólo números
+    console.log("salida validaServicio -> Validado: "+validado + " // proof: " + proof);
+};
+
+
+/* --------- Valida que el nombre no esté vacío o sean sólo números --------- */
+function validaNombre() {
     let nombre = $("#nombre").val();
     if (nombre === "" || parseInt(nombre) || !nombre) {
         $("#labelNombre").html("Nombre requerido, sin cifras");
         $("#labelNombre").addClass("error");
-        validado.push("false");
+        validado.push("mal");
     } else {
         $("#labelNombre").html("");
-        validado.push("true");
+        validado.push("bien");
     };
-    // Valida que el teléfono contenga sólo números
+    console.log("salida validaNombre -> Validado: "+validado + " // proof: " + proof);
+};
+
+
+/* -------------- Valida que el teléfono contenga sólo números -------------- */
+function validaTelefono() {
     let telefono = $("#telefono").val();
     if (!parseInt(telefono)) {
         $("#labelTelefono").html("Teléfono requerido, sólo cifras");
         $("#labelTelefono").addClass("error");
-        validado.push("false");
+        validado.push("mal");
     } else {
         $("#labelTelefono").html("");
-        validado.push("true");
+        validado.push("bien");
     };
-    // Si el array de control tiene solo valores verdades, cambia la clase del botón a activo y habilita acciones
-    if (!validado.includes("false")) {
+    console.log("salida validaTelefono -> Validado: "+validado + " // proof: " + proof);
+};
+
+
+/* ---------- Valida direcciones y Calcula Distancia usando Google ---------- */
+async function validaDirecciones() {
+    const service = new google.maps.DistanceMatrixService();
+    let inicio = document.getElementById("direccionInicio").value;
+    let termino = document.getElementById("direccionTermino").value;
+    const matrixOptions = {
+        origins: [inicio],
+        destinations: [termino],
+        travelMode: 'DRIVING',
+        unitSystem: google.maps.UnitSystem.METRIC
+    };
+    // Llama el servicio  Distance Matrix
+    const ok = await service.getDistanceMatrix(matrixOptions, callback);
+    
+    // Función callback usada para procesar la respuesta de Distance Matrix
+    function callback(response, status) {
+        if (status !== "OK") {
+            alert("Error - no se puede obtener la distancia");
+            return;
+        }
+        console.log("Respuesta API Distance: "); 
+        console.log(response);
+        //Asigna valor a direccion de inicio
+        if (response.originAddresses[0] === "") {
+            $("#labelDireccionInicio").html("Se requiere dirección de inicio válida");
+            $("#labelDireccionInicio").addClass("error");
+            validado.push("mal");
+        } else {
+            direccionInicialMap = response.originAddresses[0];
+            $("#direccionInicio").value = direccionInicialMap;
+            $("#labelDireccionInicio").html("");
+            validado.push("bien");
+        };
+        //Asigna valor a direccion de termino
+        if (response.destinationAddresses[0] === "") {
+            $("#labelDireccionTermino").html("Se requiere dirección de término válida");
+            $("#labelDireccionTermino").addClass("error");
+            validado.push("mal");
+        } else {
+            direccionFinalMap = response.destinationAddresses[0];
+            $("#labelDireccionTermino").html("");
+            validado.push("bien");
+        };
+        //Asigna valor a kilometros
+        if (response.rows[0].elements[0].status === "NOT_FOUND") {
+            kilometros = 0;
+        } else {
+            kilometros = response.rows[0].elements[0].distance.value / 1000;
+            kilometros = parseFloat(kilometros.toFixed(1));  //Kilómetros con un decimal
+            calculaPrecio(kilometros);
+        };
+    };
+    console.log("salida validaDirecciones -> Validado: "+validado + " // proof: " + proof);
+};
+
+
+/* ---------------------------- Función principal --------------------------- */
+async function valida() {
+    resetValidado();
+    validaServicio();
+    validaNombre();
+    validaTelefono();
+    const ok = await validaDirecciones(); 
+
+            // Cambia el botón por uno desactivado
+        let btn = "<button class='boton--desactivado'  disabled id='botonCotizar'>Cotizar</button>";
+        $("#finFormulario").html(btn);
+        
+
+    // Si el array de control tiene solo valores "bien", cambia la clase del botón a activo y habilita acciones
+    proof = !validado.includes("mal");
+    console.log("valor dentro de valida: "+proof);
+    if (proof) {
         // Guarda los datos en el localStorage
         guardarLocal(servicio, nombre, telefono, direccionInicialMap, direccionFinalMap);
         // Envía los datos a una API externa - ver función
         enviarDatosAPI(servicio, nombre, telefono, direccionInicialMap, direccionFinalMap);
+        //Trae datos de ejecutivo ficticio desde API externa
+        buscaEjecutivo();
         //Redacta el resultado
         redactaResultado();
         // Cambia el botón por uno activo
@@ -216,11 +252,5 @@ function valida() {
         $("#botonCotizar").click(function (e) {
             e.preventDefault();
         });
-    } else {
-        if (validado.includes("false")) {
-            // Cambia el botón por uno desactivado
-            let btn = "<button class='boton--desactivado'  disabled id='botonCotizar'>Cotizar</button>";
-            $("#finFormulario").html(btn);
-        }
-    }
+    } 
 };

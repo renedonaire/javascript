@@ -13,6 +13,7 @@ let precio = 0; //precio calculado
 let direccionInicialMap = ""; //dirección inicial calculada por Google
 let direccionFinalMap = ""; //dirección final calculada por Google
 let validado = []; //array usado como control 
+let proof = true; 
 
 // Objeto con los tipos de servicio y su precio
 let services = [
