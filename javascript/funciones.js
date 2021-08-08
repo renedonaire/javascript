@@ -43,7 +43,7 @@ function buscaEjecutivo() {
             let emailEjecutivo = data.results[0].email;
             let fotoEjecutivo = data.results[0].picture.large;
             // Construye respuesta desde el array que entrega la API
-            let agregar = "<img src='" + fotoEjecutivo + "' alt=''><p>Tu Ejecutivo asignado es: " + nombreEjecutivo + "</p><p>Llámalo al " + celularEjecutivo + "</p><p>O escríbele a " + emailEjecutivo + "</p>"
+            let agregar = "<img src='" + fotoEjecutivo + "' alt=''><p class = 'texto-ejecutivo'>Tu Ejecutivo asignado es: <br/><strong>" + nombreEjecutivo + "</strong><br/><br/>Llámalo al <br/><strong>" + celularEjecutivo + "</strong><br/><br/>O escríbele a <br/><strong>" + emailEjecutivo + "</strong></p>"
             // Inserta el html con los nuevos datos en el modal
             $("#ejecutivo").html(agregar);
         }
@@ -87,7 +87,7 @@ function redactaResultado() {
     this.direccionInicio = address.direccionInicio;
     this.direccionTermino = address.direccionTermino;
     // Construye texto de salida
-    let textoSalida = this.nombre + ", un viaje de " + this.servicio + " desde " + this.direccionInicio + " hasta " + this.direccionTermino + " son " + kilometros + " kilómetros, y te costará $" + precio;
+    let textoSalida = this.nombre + ", un viaje de " + this.servicio + " desde " + this.direccionInicio + " hasta " + this.direccionTermino + " son " + kilometros + " kilómetros, y te costará sólo $" + precio + ".";
     // Refresca texto del modal
     $("#salidaModal").empty();
     // Agrega texto de salida al modal

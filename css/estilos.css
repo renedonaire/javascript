@@ -557,3 +557,17 @@ body {
 
 #target {
   width: 345px; }
+
+.modal-header {
+  padding: 0; }
+
+.modal-title {
+  background-color: #FFA500;
+  width: 100%;
+  text-align: center; }
+
+.modal-body {
+  text-align: center; }
+
+.texto-ejecutivo {
+  text-align: center; }
