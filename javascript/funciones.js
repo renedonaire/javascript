@@ -32,28 +32,6 @@ function calculaPrecio(kilometros) {
 };
 
 
-/* ---------------------------- Función de salida --------------------------- */
-function redactaResultado() {
-    // Carga los datos almacenados previamente en el localStorage
-    let userJson = localStorage.getItem("userJson");
-    let user = JSON.parse(userJson);
-    let addressJson = localStorage.getItem("addressJson");
-    let address = JSON.parse(addressJson);
-    this.nombre = user.nombre;
-    this.servicio = user.servicio;
-    this.direccionInicio = address.direccionInicio;
-    this.direccionTermino = address.direccionTermino;
-    // Construye texto de salida
-    let textoSalida = this.nombre + ", un viaje de " + this.servicio + " desde " + this.direccionInicio + " hasta " + this.direccionTermino + " son " + kilometros + " kilómetros, y te costará $" + precio;
-    // Refresca texto del modal
-    $("#salidaModal").empty();
-    // Agrega texto de salida al modal
-    $("#salidaModal").append(function () {
-        return textoSalida;
-    });
-};
-
-
 /* ------------ Trae datos de un ejecutivo ficticio mediante AJAX ----------- */
 function buscaEjecutivo() {
     $.ajax({
@@ -97,6 +75,29 @@ function enviarDatosAPI(servicio, nombre, telefono, direccionInicio, direccionTe
 };
 
 
+/* ---------------------------- Función de salida --------------------------- */
+function redactaResultado() {
+    // Carga los datos almacenados previamente en el localStorage
+    let userJson = localStorage.getItem("userJson");
+    console.log("userJson: "+userJson)
+    let user = JSON.parse(userJson);
+    let addressJson = localStorage.getItem("addressJson");
+    let address = JSON.parse(addressJson);
+    this.nombre = user.nombre;
+    this.servicio = user.servicio;
+    this.direccionInicio = address.direccionInicio;
+    this.direccionTermino = address.direccionTermino;
+    // Construye texto de salida
+    let textoSalida = this.nombre + ", un viaje de " + this.servicio + " desde " + this.direccionInicio + " hasta " + this.direccionTermino + " son " + kilometros + " kilómetros, y te costará $" + precio;
+    // Refresca texto del modal
+    $("#salidaModal").empty();
+    // Agrega texto de salida al modal
+    $("#salidaModal").append(function () {
+        return textoSalida;
+    });
+};
+
+
 /* ------------------- Refresca los campos del formulario ------------------- */
 function refrescarFormulario() {
     $("#servicio").val(".");
@@ -104,8 +105,8 @@ function refrescarFormulario() {
     $("#telefono").val("");
     $("#direccionInicio").val("");
     $("#direccionTermino").val("");
-    valida(); 
-}
+    valida();
+};
 
 
 /* -------------------------------------------------------------------------- */
@@ -116,7 +117,6 @@ function refrescarFormulario() {
 function resetValidado() {
     validado = [];
     proof = false;
-    console.log("RESET VALIDADO -> Validado: "+validado + " // proof: " + proof);
 }
 
 /* -------------- Valida que el tipo de servicio no esté vacío -------------- */
@@ -130,7 +130,6 @@ function validaServicio() {
         $("#labelServicio").html("");
         validado.push("bien");
     };
-    console.log("salida validaServicio -> Validado: "+validado + " // proof: " + proof);
 };
 
 
@@ -145,7 +144,6 @@ function validaNombre() {
         $("#labelNombre").html("");
         validado.push("bien");
     };
-    console.log("salida validaNombre -> Validado: "+validado + " // proof: " + proof);
 };
 
 
@@ -160,7 +158,6 @@ function validaTelefono() {
         $("#labelTelefono").html("");
         validado.push("bien");
     };
-    console.log("salida validaTelefono -> Validado: "+validado + " // proof: " + proof);
 };
 
 
@@ -177,14 +174,14 @@ async function validaDirecciones() {
     };
     // Llama el servicio  Distance Matrix
     const ok = await service.getDistanceMatrix(matrixOptions, callback);
-    
+
     // Función callback usada para procesar la respuesta de Distance Matrix
     function callback(response, status) {
         if (status !== "OK") {
             alert("Error - no se puede obtener la distancia");
             return;
         }
-        console.log("Respuesta API Distance: "); 
+        console.log("Respuesta API Distance: ");
         console.log(response);
         //Asigna valor a direccion de inicio
         if (response.originAddresses[0] === "") {
@@ -216,7 +213,6 @@ async function validaDirecciones() {
             calculaPrecio(kilometros);
         };
     };
-    console.log("salida validaDirecciones -> Validado: "+validado + " // proof: " + proof);
 };
 
 
@@ -226,18 +222,18 @@ async function valida() {
     validaServicio();
     validaNombre();
     validaTelefono();
-    const ok = await validaDirecciones(); 
+    const ok = await validaDirecciones();
 
-            // Cambia el botón por uno desactivado
-        let btn = "<button class='boton--desactivado'  disabled id='botonCotizar'>Cotizar</button>";
-        $("#finFormulario").html(btn);
-        
+    // Cambia el botón por uno desactivado
+    let btn = "<button class='boton--desactivado'  disabled id='botonCotizar'>Cotizar</button>";
+    $("#finFormulario").html(btn);
 
     // Si el array de control tiene solo valores "bien", cambia la clase del botón a activo y habilita acciones
     proof = !validado.includes("mal");
-    console.log("valor dentro de valida: "+proof);
     if (proof) {
         // Guarda los datos en el localStorage
+        let servicio = $("#servicio").val();
+        let nombre = $("#nombre").val();
         guardarLocal(servicio, nombre, telefono, direccionInicialMap, direccionFinalMap);
         // Envía los datos a una API externa - ver función
         enviarDatosAPI(servicio, nombre, telefono, direccionInicialMap, direccionFinalMap);
@@ -252,5 +248,5 @@ async function valida() {
         $("#botonCotizar").click(function (e) {
             e.preventDefault();
         });
-    } 
+    }
 };

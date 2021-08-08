@@ -1,11 +1,4 @@
 /* -------------------------------------------------------------------------- */
-/*                              Define constantes                             */
-/* -------------------------------------------------------------------------- */
-// Rango de distancias
-const distanciaMinima = 10;
-const distanciaMaxima = 100;
-
-/* -------------------------------------------------------------------------- */
 /*                              Define variables globales                             */
 /* -------------------------------------------------------------------------- */
 let kilometros = 0; //distancia del servicio
@@ -13,7 +6,7 @@ let precio = 0; //precio calculado
 let direccionInicialMap = ""; //dirección inicial calculada por Google
 let direccionFinalMap = ""; //dirección final calculada por Google
 let validado = []; //array usado como control 
-let proof = true; 
+let proof = true; //variable de control
 
 // Objeto con los tipos de servicio y su precio
 let services = [
@@ -28,11 +21,12 @@ for (var i = 0; i < services.length; i++) {
   text.innerHTML = text.innerHTML + '<option value="' + services[i].tipoServicio + '">' + services[i].tipoServicio + '</option>';
 };
 
-// No hay mucho para animar... todos los elementos están en grid :(
+// Se ejecuta enla primera carga del documento
 $(document).ready(function () {
   validado = []; 
   valida();
-
+  
+  // No hay mucho para animar... todos los elementos están en grid :(
   $("#map").animate({
     right: -50,
     top: -10,
