@@ -10,9 +10,9 @@ let proof = true; //variable de control
 
 // Objeto con los tipos de servicio y su precio
 let services = [
-  { "tipoServicio": "Delivery", "precioPorKm": "100" },
-  { "tipoServicio": "Mudanza", "precioPorKm": "400" },
-  { "tipoServicio": "Camioneta Rampa", "precioPorKm": "200" }
+  { "tipoServicio": "Delivery", "precioPorKm": "1000" },
+  { "tipoServicio": "Mudanza", "precioPorKm": "4000" },
+  { "tipoServicio": "Camioneta Rampa", "precioPorKm": "2000" }
 ];
 /* ------------ Construye el desplegable de servicios disponibles ----------- */
 let text = document.getElementById("servicio");

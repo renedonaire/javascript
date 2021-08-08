@@ -21,14 +21,13 @@ function guardarLocal(servicio, nombre, telefono, direccionInicialMap, direccion
 
 
 /* ------------- Calcula un precio según el rango de kilómetros ------------- */
-function calculaPrecio(kilometros) {
-    if (kilometros <= 30) {
-        precio = kilometros * 2000;
-    } else if (kilometros > 30 && kilometros <= 60) {
-        precio = kilometros * 1500;
-    } else {
-        precio = kilometros * 1000;
-    };
+function calculaPrecio(servicio, kilometros) {
+    //Filtra array con precios de servicios
+    let result = services.find(servicio => servicio.tipoServicio === this.servicio);
+    //Transforma el precio en número
+    let precioKm = parseInt(result.precioPorKm);
+    //Calcula importe
+    precio = kilometros * precioKm;
 };
 
 
@@ -210,7 +209,6 @@ async function validaDirecciones() {
         } else {
             kilometros = response.rows[0].elements[0].distance.value / 1000;
             kilometros = parseFloat(kilometros.toFixed(1));  //Kilómetros con un decimal
-            calculaPrecio(kilometros);
         };
     };
 };
@@ -234,11 +232,14 @@ async function valida() {
         // Guarda los datos en el localStorage
         let servicio = $("#servicio").val();
         let nombre = $("#nombre").val();
+        let telefono = $("#telefono").val();
         guardarLocal(servicio, nombre, telefono, direccionInicialMap, direccionFinalMap);
         // Envía los datos a una API externa - ver función
         enviarDatosAPI(servicio, nombre, telefono, direccionInicialMap, direccionFinalMap);
         //Trae datos de ejecutivo ficticio desde API externa
         buscaEjecutivo();
+        //Calcula el precio según el servicio seleccionado
+        calculaPrecio(servicio, kilometros);
         //Redacta el resultado
         redactaResultado();
         // Cambia el botón por uno activo
