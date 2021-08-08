@@ -3,7 +3,7 @@
 /* -------------------------------------------------------------------------- */
 /* ------- Función para almacenar los datos del formulario localmente ------- */
 // Guarda en formato JSON, uno para las direcciones y otro para los datos del cliente
-function guardarLocal(servicio, nombre, telefono, direccionInicio, direccionTermino) {
+function guardarLocal(servicio, nombre, telefono, direccionInicialMap, direccionFinalMap) {
     this.servicio = servicio;
     this.nombre = nombre;
     this.telefono = telefono;
@@ -11,17 +11,17 @@ function guardarLocal(servicio, nombre, telefono, direccionInicio, direccionTerm
     let userJson = JSON.stringify(user);
     localStorage.setItem("userJson", userJson);
 
-    this.direccionInicio = direccionInicio;
-    this.direccionTermino = direccionTermino;
+    this.direccionInicio = direccionInicialMap;
+    this.direccionTermino = direccionFinalMap;
     let address = { direccionInicio: this.direccionInicio, direccionTermino: this.direccionTermino };
     let addressJson = JSON.stringify(address);
     localStorage.setItem("addressJson", addressJson);
 };
 
 /* ------------------- Calcula Distancia usando Google ------------------- */
-function defineDistancia() {
+function validaDirecciones() {
     kilometros = 0;
-    const service = new google.maps.DistanceMatrixService(); 
+    const service = new google.maps.DistanceMatrixService();
     let inicio = document.getElementById("direccionInicio").value;
     let termino = document.getElementById("direccionTermino").value;
     const matrixOptions = {
@@ -38,19 +38,47 @@ function defineDistancia() {
             alert("Error - no se puede obtener la distancia");
             return;
         }
+        console.log("Respuesta API Distance: ");
         console.log(response);
-        direccionInicialMap = response.originAddresses[0];
-        direccionFinalMap = response.destinationAddresses[0];
-        // $("#direccionInicio").value = direccionInicialMap;
-        // $("#direccionTermino").value = direccionFinalMap;
-        kilometros = response.rows[0].elements[0].distance.value / 1000;
-        kilometros = parseFloat(kilometros.toFixed(1));  //Kilómetros con un decimal
-        alert("Salida defineDistancia: inicio " + direccionInicialMap + "; fin " +  direccionFinalMap + "; km " + kilometros);
-    }
+        //Asigna valor válido a direccion de inicio
+        if (response.originAddresses[0] === "") {
+            $("#labelDireccionInicio").html("Se requiere dirección de inicio");
+            $("#labelDireccionInicio").addClass("error");
+            validado = false;
+        } else {
+            direccionInicialMap = response.originAddresses[0];
+            $("#direccionInicio").value = direccionInicialMap;
+            $("#labelDireccionInicio").html("");
+            validado = true;
+        };
+        //Asigna valor válido a direccion de termino
+        if (response.destinationAddresses[0] === "") {
+        $("#labelDireccionTermino").html("Se requiere dirección de término");
+        $("#labelDireccionTermino").addClass("error");
+        validado = false;
+        } else {
+            direccionFinalMap = response.destinationAddresses[0];
+        $("#labelDireccionTermino").html("");
+        validado = true;
+        };
+        //Asigna valor válido a kilometros
+        if (response.rows[0].elements[0].status === "NOT_FOUND") {
+            alert("no se puede calcular distancia");
+            kilometros = 0;
+        } else {
+            kilometros = response.rows[0].elements[0].distance.value / 1000;
+            kilometros = parseFloat(kilometros.toFixed(1));  //Kilómetros con un decimal
+            calculaPrecio(kilometros);
+        };
+    };
 };
 
+
+
 /* ------------- Calcula un precio según el rango de kilómetros ------------- */
-function calculaPrecio() {
+function calculaPrecio(kilometros) {
+    console.log(direccionInicialMap + " -> " + direccionFinalMap);
+    console.log("Kilometros: " + kilometros);
     if (kilometros <= 30) {
         precio = kilometros * 2000;
     } else if (kilometros > 30 && kilometros <= 60) {
@@ -58,14 +86,12 @@ function calculaPrecio() {
     } else {
         precio = kilometros * 1000;
     };
-    alert("Salida calculaPrecio: " + precio);
 };
+
+
 
 /* ---------------------------- Función de salida --------------------------- */
 function redactaResultado() {
-    // Carga los datos almacenados en variables globales
-    this.kilometros = kilometros;
-    this.precio = precio;
     // Carga los datos almacenados previamente en el localStorage
     let userJson = localStorage.getItem("userJson");
     let user = JSON.parse(userJson);
@@ -76,7 +102,8 @@ function redactaResultado() {
     this.direccionInicio = address.direccionInicio;
     this.direccionTermino = address.direccionTermino;
     // Construye texto de salida
-    let textoSalida = this.nombre + ", un viaje de " + this.servicio + " desde " + this.direccionInicio + " hasta " + this.direccionTermino + " son " + this.kilometros + " kilómetros, y te costará $" + this.precio;
+    let textoSalida = this.nombre + ", un viaje de " + this.servicio + " desde " + this.direccionInicio + " hasta " + this.direccionTermino + " son " + kilometros + " kilómetros, y te costará $" + precio;
+    console.log("Texto Salida: " + textoSalida);
     // Refresca texto del modal
     $("#salidaModal").empty();
     // Agrega texto de salida al modal
@@ -84,6 +111,8 @@ function redactaResultado() {
         return textoSalida;
     });
 };
+
+
 
 /* ------------ Trae datos de un ejecutivo ficticio mediante AJAX ----------- */
 function buscaEjecutivo() {
@@ -103,6 +132,8 @@ function buscaEjecutivo() {
         }
     });
 };
+
+
 
 /* ------------------- Esta función envía datos a una API ------------------- */
 // usando fetch. En este caso es una API de prueba
@@ -127,93 +158,67 @@ function enviarDatosAPI(servicio, nombre, telefono, direccionInicio, direccionTe
 };
 
 
+
+
 /* -------------------- Valida los campos del formulario -------------------- */
 // Al hacer click en el botón y muestra los hints correspondientes
 // Ver cómo se puede simplificar, al parecer se repite la lógica
 function valida() {
+    //Llama función para obtener distancia
+    validaDirecciones();
     //Trae datos de ejecutivo ficticio
     buscaEjecutivo();
-    // Array para validar las entradas con True o False
-    let validado = [];
     // Valida que el tipo de servicio no esté vacío
     let servicio = $("#servicio").val();
     if (servicio == ".") {
         $("#labelServicio").html("Tipo de servicio requerido");
         $("#labelServicio").addClass("error");
-        validado.push("false");
+        validado = false;
     } else {
         $("#labelServicio").html("");
-        validado.push("true");
+        validado = true;
     };
     // Valida que el nombre no esté vacío o sean sólo números
     let nombre = $("#nombre").val();
     if (nombre === "" || parseInt(nombre) || !nombre) {
         $("#labelNombre").html("Nombre requerido, sin cifras");
         $("#labelNombre").addClass("error");
-        validado.push("false");
+        validado = false;
     } else {
         $("#labelNombre").html("");
-        validado.push("true");
+        validado = true;
     };
     // Valida que el teléfono contenga sólo números
     let telefono = $("#telefono").val();
     if (!parseInt(telefono)) {
         $("#labelTelefono").html("Teléfono requerido, sólo cifras");
         $("#labelTelefono").addClass("error");
-        validado.push("false");
+        validado = false;
     } else {
         $("#labelTelefono").html("");
-        validado.push("true");
+        validado = true;
     };
-    // Valida que haya una dirección de inicio validada por servicio de Google
-    let direccionInicio = $("#direccionInicio").val();
-    if (direccionInicio === "" || parseInt(direccionInicio) || !direccionInicio) {
-        $("#labelDireccionInicio").html("Se requiere dirección de inicio");
-        $("#labelDireccionInicio").addClass("error");
-        validado.push("false");
-    } else {
-        $("#labelDireccionInicio").html("");
-        validado.push("true");
-    };
-    // Valida que exista una dirección de destino validada por servicio de Google
-    let direccionTermino = $("#direccionTermino").val();
-    if (direccionTermino === "" || parseInt(direccionTermino) || !direccionTermino) {
-        $("#labelDireccionTermino").html("Se requiere dirección de término");
-        $("#labelDireccionTermino").addClass("error");
-        validado.push("false");
-    } else {
-        $("#labelDireccionTermino").html("");
-        validado.push("true");
-    };
-    // Si en el array de control todos los valores son True, cambia la clase del botón a activo y habilita acciones
-    if (!validado.includes("false")) {
+
+    // Si la flag de control es True, cambia la clase del botón a activo y habilita acciones
+    if (validado) {
         // Guarda los datos en el localStorage
-        guardarLocal(servicio, nombre, telefono, direccionInicio, direccionTermino);
+        guardarLocal(servicio, nombre, telefono, direccionInicialMap, direccionFinalMap);
         // Envía los datos a una API externa - ver función
-        enviarDatosAPI(servicio, nombre, telefono, direccionInicio, direccionTermino);
+        enviarDatosAPI(servicio, nombre, telefono, direccionInicialMap, direccionFinalMap);
+        //Redacta el resultado
+        redactaResultado();
         // Cambia el botón por uno activo
-        let btn = "<button class='boton' id='botonCotizar' data-toggle='modal' data-target ='#modalSalida' >Cotizar</button>"
+        let btn = "<button type=submit class='boton' id='botonCotizar' data-toggle='modal' data-target ='#modalSalida' >Cotizar</button>"
         $("#finFormulario").html(btn);
         // Evita que la página se refresque para que el modal se visualice correctamente
         $("#botonCotizar").click(function (e) {
             e.preventDefault();
         });
     } else {
-        if (validado.includes("false")) {
+        if (!validado) {
             // Cambia el botón por uno desactivado
             let btn = "<button class='boton--desactivado'  disabled id='botonCotizar'>Cotizar</button>";
             $("#finFormulario").html(btn);
-            // Evita que la página se refresque para que el modal se visualice correctamente
-            $("#botonCotizar").click(function (e) {
-                e.preventDefault();
-            });
         }
     }
-    // Modifica texto del modal de salida
-    defineDistancia();
-    calculaPrecio();
-    redactaResultado();
-
-
-
 };

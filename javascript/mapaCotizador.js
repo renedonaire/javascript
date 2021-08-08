@@ -3,6 +3,7 @@ function initMap() {
 		mapTypeControl: false,
 		center: { lat: -33.4852941, lng: -70.6720072 },
 		zoom: 14,
+		
 	});
 	new AutocompleteDirectionsHandler(map);
 }
