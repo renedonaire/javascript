@@ -42,24 +42,24 @@ function validaDirecciones() {
         console.log(response);
         //Asigna valor válido a direccion de inicio
         if (response.originAddresses[0] === "") {
-            $("#labelDireccionInicio").html("Se requiere dirección de inicio");
+            $("#labelDireccionInicio").html("Se requiere dirección de inicio válida");
             $("#labelDireccionInicio").addClass("error");
-            validado = false;
+            validado.push("false");
         } else {
             direccionInicialMap = response.originAddresses[0];
             $("#direccionInicio").value = direccionInicialMap;
             $("#labelDireccionInicio").html("");
-            validado = true;
+            validado.push("true");
         };
         //Asigna valor válido a direccion de termino
         if (response.destinationAddresses[0] === "") {
-        $("#labelDireccionTermino").html("Se requiere dirección de término");
+        $("#labelDireccionTermino").html("Se requiere dirección de término válida");
         $("#labelDireccionTermino").addClass("error");
-        validado = false;
+        validado.push("false");
         } else {
             direccionFinalMap = response.destinationAddresses[0];
         $("#labelDireccionTermino").html("");
-        validado = true;
+        validado.push("true");
         };
         //Asigna valor válido a kilometros
         if (response.rows[0].elements[0].status === "NOT_FOUND") {
@@ -164,6 +164,7 @@ function enviarDatosAPI(servicio, nombre, telefono, direccionInicio, direccionTe
 // Al hacer click en el botón y muestra los hints correspondientes
 // Ver cómo se puede simplificar, al parecer se repite la lógica
 function valida() {
+    validado = [];
     //Llama función para obtener distancia
     validaDirecciones();
     //Trae datos de ejecutivo ficticio
@@ -173,34 +174,34 @@ function valida() {
     if (servicio == ".") {
         $("#labelServicio").html("Tipo de servicio requerido");
         $("#labelServicio").addClass("error");
-        validado = false;
+        validado.push("false");
     } else {
         $("#labelServicio").html("");
-        validado = true;
+        validado.push("true");
     };
     // Valida que el nombre no esté vacío o sean sólo números
     let nombre = $("#nombre").val();
     if (nombre === "" || parseInt(nombre) || !nombre) {
         $("#labelNombre").html("Nombre requerido, sin cifras");
         $("#labelNombre").addClass("error");
-        validado = false;
+        validado.push("false");
     } else {
         $("#labelNombre").html("");
-        validado = true;
+        validado.push("true");
     };
     // Valida que el teléfono contenga sólo números
     let telefono = $("#telefono").val();
     if (!parseInt(telefono)) {
         $("#labelTelefono").html("Teléfono requerido, sólo cifras");
         $("#labelTelefono").addClass("error");
-        validado = false;
+        validado.push("false");
     } else {
         $("#labelTelefono").html("");
-        validado = true;
+        validado.push("true");
     };
 
-    // Si la flag de control es True, cambia la clase del botón a activo y habilita acciones
-    if (validado) {
+    // Si el array de control tiene solo valores verdades, cambia la clase del botón a activo y habilita acciones
+    if (!validado.includes("false")) {
         // Guarda los datos en el localStorage
         guardarLocal(servicio, nombre, telefono, direccionInicialMap, direccionFinalMap);
         // Envía los datos a una API externa - ver función
@@ -215,7 +216,7 @@ function valida() {
             e.preventDefault();
         });
     } else {
-        if (!validado) {
+        if (validado.includes("false")) {
             // Cambia el botón por uno desactivado
             let btn = "<button class='boton--desactivado'  disabled id='botonCotizar'>Cotizar</button>";
             $("#finFormulario").html(btn);

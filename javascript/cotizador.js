@@ -12,7 +12,7 @@ let kilometros = 0; //distancia del servicio
 let precio = 0; //precio calculado
 let direccionInicialMap = ""; //dirección inicial calculada por Google
 let direccionFinalMap = ""; //dirección final calculada por Google
-let validado = false; //booleano usado como flag 
+let validado = []; //array usado como control 
 
 // Objeto con los tipos de servicio y su precio
 let services = [
@@ -29,6 +29,8 @@ for (var i = 0; i < services.length; i++) {
 
 // No hay mucho para animar... todos los elementos están en grid :(
 $(document).ready(function () {
+  valida();
+
   $("#map").animate({
     right: -50,
     top: -10,
