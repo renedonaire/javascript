@@ -8,13 +8,16 @@ const distanciaMaxima = 100;
 /* -------------------------------------------------------------------------- */
 /*                              Define variables globales                             */
 /* -------------------------------------------------------------------------- */
-let kilometros = 0; //distancia al azar -temporalmente
+let kilometros = 0; //distancia del servicio
 let precio = 0; //precio calculado
+let direccionInicialMap = ""; //dirección inicial calculada por Google
+let direccionFinalMap = ""; //dirección final calculada por Google
+
 // Objeto con los tipos de servicio y su precio
 let services = [
   { "tipoServicio": "Delivery", "precioPorKm": "100" },
-  { "tipoServicio": "Mudanza", "precioPorKm": "300" },
-  { "tipoServicio": "Camioneta Rampa", "precioPorKm": "600" }
+  { "tipoServicio": "Mudanza", "precioPorKm": "400" },
+  { "tipoServicio": "Camioneta Rampa", "precioPorKm": "200" }
 ];
 /* ------------ Construye el desplegable de servicios disponibles ----------- */
 let text = document.getElementById("servicio");

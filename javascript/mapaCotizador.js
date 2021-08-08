@@ -5,29 +5,6 @@ function initMap() {
 		zoom: 14,
 	});
 	new AutocompleteDirectionsHandler(map);
-
-	// const service = new google.maps.DistanceMatrixService(); // instantiate Distance Matrix service
-	// let inicio = document.getElementById("direccionInicio").value;
-	// let termino = document.getElementById("direccionTermino").value;
-	// const matrixOptions = {
-	// 	origins: [inicio], 
-	// 	destinations: [termino], 
-	// 	travelMode: 'DRIVING',
-	// 	unitSystem: google.maps.UnitSystem.METRIC
-	// };
-	// // Call Distance Matrix service
-	// service.getDistanceMatrix(matrixOptions, callback);
-
-	// // Callback function used to process Distance Matrix response
-	// function callback(response, status) {
-	// 	if (status !== "OK") {
-	// 		alert("Error with distance matrix");
-	// 		return;
-	// 	}
-	// 	console.log(response);
-	// }
-
-
 }
 
 class AutocompleteDirectionsHandler {
@@ -63,7 +40,7 @@ class AutocompleteDirectionsHandler {
 			const place = autocomplete.getPlace();
 
 			if (!place.place_id) {
-				window.alert("Please select an option from the dropdown list.");
+				window.alert("Por favor seleccione una opción de la lista desplegable.");
 				return;
 			}
 
@@ -90,7 +67,7 @@ class AutocompleteDirectionsHandler {
 				if (status === "OK") {
 					me.directionsRenderer.setDirections(response);
 				} else {
-					window.alert("Directions request failed due to " + status);
+					window.alert("Falló la solicitud a Directions debido a " + status);
 				}
 			}
 		);
