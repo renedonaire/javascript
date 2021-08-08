@@ -1,6 +1,7 @@
 /* -------------------------------------------------------------------------- */
 /*                               Define funciones                             */
 /* -------------------------------------------------------------------------- */
+
 /* ------- Función para almacenar los datos del formulario localmente ------- */
 // Guarda en formato JSON, uno para las direcciones y otro para los datos del cliente
 function guardarLocal(servicio, nombre, telefono, direccionInicialMap, direccionFinalMap) {
@@ -18,9 +19,9 @@ function guardarLocal(servicio, nombre, telefono, direccionInicialMap, direccion
     localStorage.setItem("addressJson", addressJson);
 };
 
+
 /* ------------------- Calcula Distancia usando Google ------------------- */
 function validaDirecciones() {
-    kilometros = 0;
     const service = new google.maps.DistanceMatrixService();
     let inicio = document.getElementById("direccionInicio").value;
     let termino = document.getElementById("direccionTermino").value;
@@ -40,7 +41,7 @@ function validaDirecciones() {
         }
         console.log("Respuesta API Distance: ");
         console.log(response);
-        //Asigna valor válido a direccion de inicio
+        //Asigna valor a direccion de inicio
         if (response.originAddresses[0] === "") {
             $("#labelDireccionInicio").html("Se requiere dirección de inicio válida");
             $("#labelDireccionInicio").addClass("error");
@@ -51,19 +52,18 @@ function validaDirecciones() {
             $("#labelDireccionInicio").html("");
             validado.push("true");
         };
-        //Asigna valor válido a direccion de termino
+        //Asigna valor a direccion de termino
         if (response.destinationAddresses[0] === "") {
-        $("#labelDireccionTermino").html("Se requiere dirección de término válida");
-        $("#labelDireccionTermino").addClass("error");
-        validado.push("false");
+            $("#labelDireccionTermino").html("Se requiere dirección de término válida");
+            $("#labelDireccionTermino").addClass("error");
+            validado.push("false");
         } else {
             direccionFinalMap = response.destinationAddresses[0];
-        $("#labelDireccionTermino").html("");
-        validado.push("true");
+            $("#labelDireccionTermino").html("");
+            validado.push("true");
         };
-        //Asigna valor válido a kilometros
+        //Asigna valor a kilometros
         if (response.rows[0].elements[0].status === "NOT_FOUND") {
-            alert("no se puede calcular distancia");
             kilometros = 0;
         } else {
             kilometros = response.rows[0].elements[0].distance.value / 1000;
@@ -74,11 +74,8 @@ function validaDirecciones() {
 };
 
 
-
 /* ------------- Calcula un precio según el rango de kilómetros ------------- */
 function calculaPrecio(kilometros) {
-    console.log(direccionInicialMap + " -> " + direccionFinalMap);
-    console.log("Kilometros: " + kilometros);
     if (kilometros <= 30) {
         precio = kilometros * 2000;
     } else if (kilometros > 30 && kilometros <= 60) {
@@ -87,7 +84,6 @@ function calculaPrecio(kilometros) {
         precio = kilometros * 1000;
     };
 };
-
 
 
 /* ---------------------------- Función de salida --------------------------- */
@@ -103,7 +99,6 @@ function redactaResultado() {
     this.direccionTermino = address.direccionTermino;
     // Construye texto de salida
     let textoSalida = this.nombre + ", un viaje de " + this.servicio + " desde " + this.direccionInicio + " hasta " + this.direccionTermino + " son " + kilometros + " kilómetros, y te costará $" + precio;
-    console.log("Texto Salida: " + textoSalida);
     // Refresca texto del modal
     $("#salidaModal").empty();
     // Agrega texto de salida al modal
@@ -111,7 +106,6 @@ function redactaResultado() {
         return textoSalida;
     });
 };
-
 
 
 /* ------------ Trae datos de un ejecutivo ficticio mediante AJAX ----------- */
@@ -132,7 +126,6 @@ function buscaEjecutivo() {
         }
     });
 };
-
 
 
 /* ------------------- Esta función envía datos a una API ------------------- */
@@ -158,6 +151,15 @@ function enviarDatosAPI(servicio, nombre, telefono, direccionInicio, direccionTe
 };
 
 
+/* ------------------- Refresca los campos del formulario ------------------- */
+function refrescarFormulario() {
+    $("#servicio").val(".");
+    $("#nombre").val("");
+    $("#telefono").val("");
+    $("#direccionInicio").val("");
+    $("#direccionTermino").val("");
+    valida(); 
+}
 
 
 /* -------------------- Valida los campos del formulario -------------------- */
@@ -199,7 +201,6 @@ function valida() {
         $("#labelTelefono").html("");
         validado.push("true");
     };
-
     // Si el array de control tiene solo valores verdades, cambia la clase del botón a activo y habilita acciones
     if (!validado.includes("false")) {
         // Guarda los datos en el localStorage

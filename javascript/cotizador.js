@@ -29,6 +29,7 @@ for (var i = 0; i < services.length; i++) {
 
 // No hay mucho para animar... todos los elementos están en grid :(
 $(document).ready(function () {
+  validado = []; 
   valida();
 
   $("#map").animate({
